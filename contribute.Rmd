@@ -17,7 +17,7 @@ There are many ways to contribute to our project.
   - [git](https://git-scm.com/docs/gittutorial)
   - [feature request
     workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
-  - [R)[https://www.rstudio.com/resources/books/)
+  - [R](https://www.rstudio.com/resources/books/)
   - Rmarkdown,[Rmarkdown book](https://bookdown.org/yihui/rmarkdown/) or [Rstudio Rmarkdown
     cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
 
