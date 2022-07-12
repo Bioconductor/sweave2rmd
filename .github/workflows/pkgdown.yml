@@ -7,10 +7,6 @@ name: website
 jobs:
   build-website:
     runs-on: ubuntu-latest
-    name: pkgdown website
-    container: ubuntu-latest
-    strategy:
-      fail-fast: true
     env:
       r_version: 4.2
     steps:
