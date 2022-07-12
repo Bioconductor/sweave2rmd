@@ -24,6 +24,7 @@ jobs:
 
     - name: Install pkgdown
       run: |
+        install.packages("remotes")
         remotes::install_cran("pkgdown")
       shell: Rscript {0}
 
