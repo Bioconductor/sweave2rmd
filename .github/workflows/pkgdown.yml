@@ -25,7 +25,8 @@ jobs:
     - name: Install pkgdown
       run: |
         install.packages("remotes")
-        remotes::install_cran("pkgdown")
+        library(remotes)
+        remotes::install_cran("pkgdown", dependencies = TRUE)
       shell: Rscript {0}
 
     - name: Deploy website
