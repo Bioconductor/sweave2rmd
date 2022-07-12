@@ -1,0 +1,10 @@
+Package: Sweave2Rmd
+Title: Sweave2Rmd
+Version: 0.0.1
+Authors@R:
+    c(person(given = "J", family = "Wokaty", role = "aut",
+             email = "jennifer.wokaty@gmailcom"))
+Description: Website for Bioconductor community contributors to
+    organize around converting Sweave vignettes to Rmd.
+License: CC BY-SA 4.0
+Encoding: UTF-8

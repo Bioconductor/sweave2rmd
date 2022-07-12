@@ -1,0 +1,136 @@
+# Contribute
+
+There are many ways to contribute to our project.
+
+* Convert a Sweave document to Rmd
+* Reach out to maintainers to see if they'll accept a pull request
+* Improve our documentation
+* Share our project via social media
+
+## Convert a Sweave document to Rmd
+
+### Before You Begin
+
+#### Good to Know 
+
+* Required
+  - [git](https://git-scm.com/docs/gittutorial)
+  - [feature request
+    workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
+  - [R](https://www.rstudio.com/resources/books/)
+  - Rmarkdown,[Rmarkdown book](https://bookdown.org/yihui/rmarkdown/) or [Rstudio Rmarkdown
+    cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
+
+* Familiarity with
+  - [Bioconductor](https://bioconductor.org)
+  - [BiocStyle](https://bioconductor.org/packages/devel/bioc/html/BiocStyle.html)
+
+#### Good to Have
+
+* [pandoc](https://pandoc.org)
+
+### Claim a Vignette to Convert
+
+1. Check the
+   [Sweave2rmd Project Board](https://github.com/orgs/Bioconductor/projects/2/views/1)
+2. Select an issue to work on by setting `Status` to `Todo`, `Last Modified` to
+   today, and change `Assigned` to your GitHub username.
+3. If the package is not maintained by Bioconductor, you must contact the
+   maintainer to verify they will accept a pull request with the converted
+   vignette.
+
+### Confirm Willingness of Maintainer to Accept Pull Request
+
+#### Contact the Maintainer via Email
+
+1. Search for the package on
+[BiocViews](https://bioconductor.org/packages/devel/BiocViews.html#___Software).
+2. Click on the package name to go to the package's landing page.
+3. Find the maintainer's email.
+4. Email the maintainer asking if they would accept a pull request with the
+   converted vignette. You can modify the following example email to send to
+   the maintainer:
+   ```
+   Hi,
+
+   I'm volunteering with [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd)
+   and we're trying to convert all Bioconductor Sweave vignettes into `.Rmd`
+   files. Would you be willing to accept a pull request converting *vignette
+   name* for *package name* from one of our volunteers? We'll take care of
+   converting the file. We'll ask you to review and accept the pull request.
+   You'll also need to bump the version number in your DESCRIPTION file so that
+   the build machines will recognize that a new version is available.
+
+   Thanks for your time.
+   ```
+5. On the project board, set the `Status` to `Contacted` and `Last Modified` to
+   today
+6. If the maintainer will accept the pull request, set the `Status` to
+   `Maintainer Interested`. If they will not accept a pull request, set it to
+   `Maintainer Not Interested`. If after two weeks, the maintainer is not
+   responsive, set the `Status` to `Unresponsive`.
+7. Set `Last Modified` to today.
+
+### Convert the .Rnw vignette to .Rmd
+
+Note: We use `file` to indicate the name of the Sweave file that we will
+convert to `.Rmd`.
+
+1. On the project board, set the `Status` to `In Progress`.
+2. Search for the package on
+   [BiocViews](https://bioconductor.org/packages/devel/BiocViews.html#___Software).
+3. Click on the package to visit its landing page.
+4. Find the current Sweave file that you will convert. Use this to compare the
+   with the `.Rmd` version you will create.
+5. Fork the repository you will work on.
+6. Clone your newly forked repository.
+7. Make a branch for your changes: `git switch -c file-Rmd`
+8. If you have `pandoc`, use it to preprocess. In the terminal
+   1. `cp file.Rnw file.tex`
+   2. `pandoc -s file.tex -o file.md`
+   3. `mv file.md file.Rmd`
+9. If the file doesn't have yaml at the top, add it using the following as an
+   example:
+  ```
+  ---
+  title: "Vignette Title"
+  author: "Vignette Author"
+  package: PackageName
+  output: 
+    BiocStyle::html_document
+  vignette: >
+    %\VignetteIndexEntry{Vignette Title}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}  
+  ---
+  ```
+10. If `BiocStyle` isn't in the DESCRIPTION file, add it under `Suggests`.`
+11. Convert any lines manually as necessary.
+12. If using Rstudio, `Knit` your new vignette and compare with the Sweave
+    version.
+13. Repeat 10-12 until your new `HTML` vignettes accurately represents the
+    Sweave version.
+14. Commit your changes with `git commit -m 'Convert file to Rmd'`.
+15. Remove the Sweave file with `git rm file.Rnw`
+16. Commit your change with `git commit -m 'Remove file.Rnw'`.
+17. Push your branch with `git push origin file-rmd`.
+18. On github.com, go to your forked repository and create a pull request.
+19. In the comments of the pull request, ask for a review with
+    `@Bioconductor/sweave2rmd` and attach the `HTML` vignette.
+20. On the project board, set the `Status` to `PR Made`.
+21. If your reviewer leaves any comments, address them until your pull request
+    is ready to merge.
+
+### Review a Pull Request
+
+When reviewing a pull request, confirm
+
+* the `HTML` document is representative of the Sweave document
+* the `.Rmd` file is representative of the Sweave document
+* the `.Rmd` file uses best practices
+
+Use the comments to communicate issues to resolve for the volunteer who made
+the pull request.
+
+When all issues are resolved, ask the maintainer to approve the pull request
+and remind them to bump the version in the DESCRIPTION file.
