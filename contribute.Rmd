@@ -7,6 +7,10 @@ There are many ways to contribute to our project.
 * Improve our documentation
 * Share our project via social media
 
+## Resources
+
+[sweave2rmd Slack channel](https://join.slack.com/share/enQtMzQ5ODU0NzkzNjQ5OC00YmNhY2FjNzYyNzg3OWY2NDBlZDNjY2RiODYxMTJmOWYzOGI0MGE1MjYzNDMyMWIyNjNkZTg2ZjcxY2FhNTMz)[![](https://cdn.bfldr.com/5H442O3W/at/pl546j-7le8zk-afym5u/Slack_Mark_Web.png?auto=webp&format=png){width=30px}](https://join.slack.com/share/enQtMzQ5ODU0NzkzNjQ5OC00YmNhY2FjNzYyNzg3OWY2NDBlZDNjY2RiODYxMTJmOWYzOGI0MGE1MjYzNDMyMWIyNjNkZTg2ZjcxY2FhNTMz)
+
 ## Convert a Sweave document to Rmd
 
 ### Before You Begin
@@ -44,7 +48,7 @@ There are many ways to contribute to our project.
 #### Contact the Maintainer via Email
 
 1. Search for the package on
-[BiocViews](https://bioconductor.org/packages/devel/BiocViews.html#___Software).
+[BiocViews](https://bioconductor.org/packages/devel/BiocViews.html#___Software).  #pv screenshot image here
 2. Click on the package name to go to the package's landing page.
 3. Find the maintainer's email.
 4. Email the maintainer asking if they would accept a pull request with the
@@ -76,14 +80,14 @@ There are many ways to contribute to our project.
 Note: We use `file` to indicate the name of the Sweave file that we will
 convert to `.Rmd`.
 
-1. On the project board, set the `Status` to `In Progress`.
+1. On the [project board](https://github.com/orgs/Bioconductor/projects/2/views/1), set the `Status` to `In Progress`.
 2. Search for the package on
-   [BiocViews](https://bioconductor.org/packages/devel/BiocViews.html#___Software).
+   [BiocViews](https://bioconductor.org/packages/devel/BiocViews.html#___Software). #pv screenshot image here
 3. Click on the package to visit its landing page.
-4. Find the current Sweave file that you will convert. Use this to compare the
+4. Find the current Sweave file that you will convert. Use this as reference to compare the
    with the `.Rmd` version you will create.
-5. Fork the repository you will work on.
-6. Clone your newly forked repository.
+5. Fork the repository you will work on. #sceenshot if assume user not familiar with github
+6. Clone your newly forked repository. #command if assume user not familiar
 7. Make a branch for your changes: `git switch -c file-Rmd`
 8. If you have `pandoc`, use it to preprocess. In the terminal
    1. `cp file.Rnw file.tex`
@@ -94,7 +98,8 @@ convert to `.Rmd`.
   ```
   ---
   title: "Vignette Title"
-  author: "Vignette Author"
+  author: "Vignette Author" 
+  date: r format(Sys.time(), '%B %d, %Y')
   package: PackageName
   output: 
     BiocStyle::html_document
