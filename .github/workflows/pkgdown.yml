@@ -27,8 +27,8 @@ jobs:
     - name: Install libcurl
       run: |
         sudo apt-get install --no-install-recommends -y libcurl4-openssl-dev \
-        freetype2 harfbuzz fribidi libpng libtiff libjpeg
-        
+        libfreetype-dev libharfbuzz-dev libfribidi-dev libpng-dev libtiff-dev \
+        libjpeg-dev
 
     - name: Deploy website
       run: |
