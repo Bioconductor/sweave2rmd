@@ -1,5 +1,5 @@
-Package: Sweave2Rmd
-Title: Sweave2Rmd
+Package: sweave2rmd
+Title: sweave2rmd
 Version: 0.0.1
 Authors@R:
     c(person(given = "J", family = "Wokaty", role = "aut",
@@ -8,3 +8,4 @@ Description: Website for Bioconductor community contributors to
     organize around converting Sweave vignettes to Rmd.
 License: CC BY-SA 4.0
 Encoding: UTF-8
+RoxygenNote: 7.2.0
