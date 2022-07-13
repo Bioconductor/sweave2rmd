@@ -7,8 +7,6 @@ name: website
 jobs:
   build-website:
     runs-on: ubuntu-latest
-    env:
-      r_version: 4.2
     steps:
 
     - name: Checkout Repository
@@ -16,22 +14,20 @@ jobs:
 
     - name: Setup R from r-lib
       uses: r-lib/actions/setup-r@master
-      with:
-        r-version: ${{ env.r_version }}
 
     - name: Setup pandoc from r-lib
       uses: r-lib/actions/setup-pandoc@master
 
-    - name: Install pkgdown
+    - name: Set up git 
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "Github Actions"
+      shell: bash {0}
+
+    - name: Deploy website
       run: |
         install.packages("remotes")
         library(remotes)
         remotes::install_cran("pkgdown", dependencies = TRUE)
+        pkgdown::deploy_to_branch(new_process = FALSE)
       shell: Rscript {0}
-
-    - name: Deploy website
-      run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "Github Actions"
-        Rscript -e "pkgdown::deploy_to_branch(new_process = FALSE)"
-      shell: bash {0}
