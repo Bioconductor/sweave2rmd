@@ -25,7 +25,10 @@ jobs:
       shell: bash {0}
 
     - name: Install libcurl
-      run: sudo apt-get install --no-install-recommends -y libcurl4-openssl-dev
+      run: |
+        sudo apt-get install --no-install-recommends -y libcurl4-openssl-dev \
+        freetype2 harfbuzz fribidi libpng libtiff libjpeg
+        
 
     - name: Deploy website
       run: |
