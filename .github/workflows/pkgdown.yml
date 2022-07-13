@@ -25,7 +25,7 @@ jobs:
       shell: bash {0}
 
     - name: Install libcurl
-      run: apt-get install --no-install-recommends -y libcurl4-openssl-dev
+      run: sudo apt-get install --no-install-recommends -y libcurl4-openssl-dev
 
     - name: Deploy website
       run: |
