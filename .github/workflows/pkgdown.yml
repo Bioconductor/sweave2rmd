@@ -24,6 +24,9 @@ jobs:
         git config --local user.name "Github Actions"
       shell: bash {0}
 
+    - name: Install libcurl
+      run: apt install libcurl4-openssl-dev
+
     - name: Deploy website
       run: |
         install.packages("remotes")
