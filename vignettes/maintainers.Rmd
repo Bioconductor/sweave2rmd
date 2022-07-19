@@ -1,4 +1,30 @@
-# For Bioconductor Package Maintainers
+---
+title: "For Bioconductor Package Maintainers"
+description: >
+  Learn how Bioconductor package maintainers can get involved.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{For Bioconductor Package Maintainers}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Request for Your Sweave document to be Converted to Rmd
+
+If you're a Bioconductor package maintainer and would like help converting your
+package's Sweave vignettes to `.Rmd`, you're welcome to open an issue in your
+GitHub repository and ask `@Bioconductor/sweave2rmd` to convert specific files.
+
+We will put your request on our
+[Sweave2rmd Project Board](https://github.com/orgs/Bioconductor/projects/2/views/1).
+We will convert the files to `.Rmd`. The new vignette will be rendered in
+`HTML`.  We will also review the conversion internally before sending it back
+to you for your approval via a pull request.
+
+## Convert Your Own Vignettes
+
+If you prefer to convert your own vignettes, see our Contribute document for
+helpful tips to help with your conversion.
 
 ## Before Accepting a Pull Request
 

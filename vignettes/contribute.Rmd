@@ -1,4 +1,13 @@
-# Contribute
+---
+title: "Contribute"
+description: >
+  Learn how to contribute to our project.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Contribute}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 There are many ways to contribute to our project.
 
