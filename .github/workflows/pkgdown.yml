@@ -33,8 +33,6 @@ jobs:
     - name: Deploy website
       run: |
         install.packages("remotes")
-        library("remotes")
-        remotes::install_cran("pkgdown", dependencies = TRUE)
-        library("pkgdown")
+        remotes::install_github("r-lib/pkgdown")
         pkgdown::deploy_to_branch(new_process = FALSE)
       shell: Rscript {0}
