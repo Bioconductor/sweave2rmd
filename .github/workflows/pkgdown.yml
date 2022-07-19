@@ -7,6 +7,8 @@ name: website
 jobs:
   build-website:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
 
     - name: Checkout Repository
