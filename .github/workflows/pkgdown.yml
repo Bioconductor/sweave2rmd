@@ -1,6 +1,10 @@
+# Based on https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml
+
 on:
   push:
+    branches: main
   pull_request:
+    branches: main
 
 name: website 
 
@@ -14,11 +18,23 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Setup R from r-lib
-      uses: r-lib/actions/setup-r@master
+    - name: Setup Pandoc
+      uses: r-lib/actions/setup-pandoc@v2
 
-    - name: Setup pandoc from r-lib
-      uses: r-lib/actions/setup-pandoc@master
+    - name: Setup R
+      uses: r-lib/actions/setup-r@v2
+      with:
+        use-public-rspm: true
+
+    - name: Install R Dependencies
+      uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        extra-packages: any::pkgdown, local::.
+        needs: website
+
+    - name: Build site 
+      run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+      shell: Rscript {0}
 
     - name: Set up git 
       run: |
@@ -26,15 +42,9 @@ jobs:
         git config --local user.name "Github Actions"
       shell: bash {0}
 
-    - name: Install libcurl
-      run: |
-        sudo apt-get install --no-install-recommends -y libcurl4-openssl-dev \
-        libfreetype-dev libharfbuzz-dev libfribidi-dev libpng-dev libtiff-dev \
-        libjpeg-dev
-
-    - name: Deploy website
-      run: |
-        install.packages("remotes")
-        remotes::install_github("r-lib/pkgdown")
-        pkgdown::deploy_to_branch(new_process = FALSE)
-      shell: Rscript {0}
+    - name: Deploy to GitHub pages 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        clean: false
+        branch: gh-pages
+        folder: docs
