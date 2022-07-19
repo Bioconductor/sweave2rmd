@@ -1,0 +1,28 @@
+# For Bioconductor Package Maintainers
+
+## Before Accepting a Pull Request
+
+Please wait for Sweave2Rmd volunteers to review the pull request internally so
+that they can address any issues that are not specific to your package. When
+the pull request has passed an internal review, a volunteer will request that
+you as the maintainer review the pull request to request any additional
+changes if necessary to accept it.
+
+## Squash and Merge a Pull Request
+
+After a pull request has passed your review as a maintainer, you should merge
+the request on GitHub, using the `squash and merge` option to reduce the commit
+history.
+
+## After Merging
+
+We recommend that you
+
+* run `BiocCheck` on the package and making any changes in a separate pull request
+* update the NEWS file in a separate commit
+* bump the version in the `DESCRIPTION` in a separate commit so that the build
+  system will recognize that a new version is available to build
+
+You should follow the usual workflow of package development described at
+[Bioconductor Packages: Development, Maintenance, and Peer Review](https://contributions.bioconductor.org/git-version-control.html)
+to push to the Bioconductor repository.
