@@ -2,7 +2,8 @@ Package: sweave2rmd
 Title: sweave2rmd
 Version: 0.0.1
 Authors@R:
-    c(person(given = "J", family = "Wokaty", role = "aut",
+    c(person(given = "J", family = "Wokaty",
+             role = c("cre", "aut"),
              email = "jennifer.wokaty@gmailcom"))
 Description: Website for Bioconductor community contributors to
     organize around converting Sweave vignettes to Rmd.
