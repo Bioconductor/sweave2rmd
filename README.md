@@ -12,3 +12,6 @@ If you'd like to volunteer, see contribute.Rmd.
 If you're a Bioconductor maintainer who needs help converting to `.Rmd`,
 open an issue in your repository and ask `@Bioconductor/sweave2rmd` for
 help converting.
+
+This project follows the [Bioconductor Code of
+Conduct](https://bioconductor.github.io/bioc_coc_multilingual/).
