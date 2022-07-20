@@ -15,36 +15,36 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
 
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Setup Pandoc
-      uses: r-lib/actions/setup-pandoc@v2
+      - name: Setup Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
 
-    - name: Setup R
-      uses: r-lib/actions/setup-r@v2
-      with:
-        use-public-rspm: true
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
 
-    - name: Install R Dependencies
-      uses: r-lib/actions/setup-r-dependencies@v2
-      with:
-        extra-packages: any::pkgdown, local::.
-        needs: website
+      - name: Install R Dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::pkgdown, local::.
+          needs: website
 
-    - name: Build site 
-      run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
-      shell: Rscript {0}
+      - name: Build site 
+        run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+        shell: Rscript {0}
 
-    - name: Set up git 
-      run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "Github Actions"
-      shell: bash {0}
+      - name: Set up git 
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+        shell: bash {0}
 
-    - name: Deploy to GitHub pages 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        clean: false
-        branch: gh-pages
-        folder: docs
+      - name: Deploy to GitHub pages 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          clean: false
+          branch: gh-pages
+          folder: docs
