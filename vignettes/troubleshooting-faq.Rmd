@@ -4,7 +4,7 @@ description: >
   Learn how to contribute to our project.
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Contribute}
+  %\VignetteIndexEntry{Troubleshooting FAQ}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
