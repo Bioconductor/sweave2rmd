@@ -1,0 +1,37 @@
+---
+title: "Troubleshooting FAQ"
+description: >
+  Learn how to contribute to our project.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Contribute}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+*Purpose: This document compliments Sweave2Rmd [Contribute](https://bioconductor.github.io/sweave2rmd/articles/contribute.html) 
+page. It is a FAQ inventory for common issues you may run into during the 
+document conversion process. For more context on the project, see the 
+[Sweave2Rmd project page](https://bioconductor.github.io/sweave2rmd/index.html).* 
+
+## Common Questions: 
+
+### *Question:* Can I Add a Footnote in the YAML title or author fields? 
+
+*Answer:* Ordinarily, footnotes are put inside the square brackets after a caret.
+e.g., `^[This is a footnote.]`. However, due to a bug, footnotes in the YAML 
+title or author fields no longer run. If attempted, you will receive a a LaTeX 
+error. If you are converting a vignette and notice that the author byline 
+includes a footnote, as does the Bioconductor vignette [Random Numbers in BiocParallel](https://docplayer.net/228745333-Random-numbers-in-biocparallel.html), 
+there is a work around. In the YAML, add three drop down lines for the author. 
+Include all or a combination of the following: name, affiliation, and email. See
+below. 
+
+```{r eval=FALSE}
+author:
+  name: Martin Morgan
+  affiliation: Roswell Park Cancer Institute, Buffalo, NY
+  email: https://www.roswellpark.org/martin-morgan
+``` 
+
+### *Question:*
