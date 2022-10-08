@@ -206,36 +206,52 @@ Thanks for your time.</code></pre>
 <li><p>Make a branch for your changes: <code>git switch -c file-Rmd</code></p></li>
 <li><p>If <code>BiocStyle</code> and <code>knitr</code> aren’t in the DESCRIPTION file, add them under <code>Suggests</code>.`</p></li>
 <li><p>Add <code>VignetteBuilder: knitr</code> as a new line in the DESCRIPTION file.</p></li>
-<li><p>Commit your changes to your branch. Write a brief and precise commit message, such as <code># Add changes to the file to the commit     git add DESCRIPTION     # Create commit with the following message     git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'</code></p></li>
-<li><p>If you have <code>pandoc</code>, use it to preprocess. In the terminal <code># Copy the file.Rnw to file.tex since pandoc understands .tex files     cp file.Rnw file.tex     # Convert file.tex to Markdown and save as file.md     pandoc -s file.tex -o file.md     # Rename the Markdown file to R Markdown     mv file.md file.Rmd</code> Note: We currently use this method to preprocess files since we can’t directly convert from Sweave (.Rnw) to R Markdown (.Rmd). <code>pandoc</code> has some issues processing chunks of code, so we’ll have to manually correct these sections of the .Rmd file.</p></li>
+<li>
+<p>Commit your changes to your branch. Write a brief and precise commit message, such as</p>
+<pre><code># Add changes to the file to the commit
+git add DESCRIPTION
+# Create commit with the following message
+git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'</code></pre>
+</li>
+<li>
+<p>If you have <code>pandoc</code>, use it to preprocess. In the terminal</p>
+<pre><code># Copy the file.Rnw to file.tex since pandoc understands .tex files
+cp file.Rnw file.tex
+# Convert file.tex to Markdown and save as file.md
+pandoc -s file.tex -o file.md
+# Rename the Markdown file to R Markdown
+mv file.md file.Rmd</code></pre>
+<p>Note: We currently use this method to preprocess files since we can’t directly convert from Sweave (.Rnw) to R Markdown (.Rmd). <code>pandoc</code> has some issues processing chunks of code, so we’ll have to manually correct these sections of the .Rmd file.</p>
+</li>
 <li>
 <p>If the file doesn’t have <a href="https://yaml.org/" class="external-link">yaml</a> at the top, add it using the following as an example:</p>
-<pre><code>    ---
-    title: "Vignette Title"
-    author: "Vignette Author"
-    date: October 08, 2022
-    package: PackageName
-    vignette: &gt;
-      %\VignetteIndexEntry{Vignette Title}
-      %\VignetteEngine{knitr::rmarkdown}
-      %\VignetteEncoding{UTF-8}
-    output:
-      BiocStyle::html_document
-    ---
-    ```
-If the document will need a table of contents, you can alter the `output`
-as follows:</code></pre>
-<pre><code>output:
-  BiocStyle::html_documents
-    number_sections: yes
-    toc: yes
-    toc_depth: 4
-```</code></pre>
+<pre><code>---
+title: "Vignette Title"
+author: "Vignette Author"
+date: October 08, 2022
+package: PackageName
+vignette: &gt;
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document
+---</code></pre>
+<p>If the document will need a table of contents, you can alter the <code>output</code> as follows:</p>
+<pre><code><span><span class="va">output</span><span class="op">:</span></span>
+<span>  <span class="fu">BiocStyle</span><span class="fu">::</span><span class="va">html_documents</span></span>
+<span>    <span class="va">number_sections</span><span class="op">:</span> <span class="va">yes</span></span>
+<span>    <span class="va">toc</span><span class="op">:</span> <span class="va">yes</span></span>
+<span>    <span class="va">toc_depth</span><span class="op">:</span> <span class="fl">4</span></span></code></pre>
 </li>
 <li><p>Convert any lines manually as necessary.</p></li>
 <li><p>If using RStudio, <code>Knit</code> your new vignette and compare with the Sweave version periodically to ensure that the HTML produced from your R Markdown file is representative of the PDF you found in step 4.</p></li>
 <li><p>Repeat 12-13 until your new <code>HTML</code> vignettes accurately represents the Sweave version. Note: If you get stuck or run into an error, ask for help on the #sweave2rmd channel on the <a href="https://community-bioc.slack.com" class="external-link">Bioconductor Community Slack</a>. Provide any helpful information, including error messages, the vignette and the package you’re working on.</p></li>
-<li><p>Add and commit your changes to your branch <code>git add file.Rmd     git commit -m 'Convert file to Rmd'</code></p></li>
+<li>
+<p>Add and commit your changes to your branch</p>
+<pre><code>git add file.Rmd
+git commit -m 'Convert file to Rmd'</code></pre>
+</li>
 <li><p>Remove the Sweave file with <code>git rm file.Rnw</code> and commit the change with <code>git commit -m 'Remove file.Rnw'</code>.</p></li>
 <li><p><a href="https://github.com/git-guides/git-push" class="external-link">Push your branch</a> back to GitHub with <code>git push origin file-rmd</code>.</p></li>
 <li><p>On github.com, go to your forked repository and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request" class="external-link">create a pull request</a>.</p></li>
