@@ -107,7 +107,7 @@
 <li><a href="https://git-scm.com/docs/gittutorial" class="external-link">git</a></li>
 <li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow" class="external-link">feature request workflow</a></li>
 <li><a href="https://www.rstudio.com/resources/books/" class="external-link">R</a></li>
-<li>Rmarkdown,<a href="https://bookdown.org/yihui/rmarkdown/" class="external-link">Rmarkdown book</a> or <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf" class="external-link">Rstudio Rmarkdown cheatsheet</a>
+<li>R Markdown,<a href="https://bookdown.org/yihui/rmarkdown/" class="external-link">Rmarkdown book</a> or <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf" class="external-link">Rstudio Rmarkdown cheatsheet</a>
 </li>
 </ul>
 </li>
@@ -123,6 +123,8 @@
 <h4 id="good-to-have">Good to Have<a class="anchor" aria-label="anchor" href="#good-to-have"></a>
 </h4>
 <ul>
+<li><a href="https://github.com" class="external-link">git</a></li>
+<li><a href="https://www.rstudio.com/products/rstudio/" class="external-link">RStudio</a></li>
 <li><a href="https://pandoc.org" class="external-link">pandoc</a></li>
 </ul>
 </div>
@@ -141,6 +143,29 @@
 <h3 id="confirm-willingness-of-maintainer-to-accept-pull-request">Confirm Willingness of Maintainer to Accept Pull Request<a class="anchor" aria-label="anchor" href="#confirm-willingness-of-maintainer-to-accept-pull-request"></a>
 </h3>
 <div class="section level4">
+<h4 id="contact-the-maintainer-via-a-github-issue">Contact the Maintainer via a GitHub Issue<a class="anchor" aria-label="anchor" href="#contact-the-maintainer-via-a-github-issue"></a>
+</h4>
+<ol style="list-style-type: decimal">
+<li><p>Search for the package on <a href="https://bioconductor.org/packages/devel/BiocViews.html#___Software" class="external-link">BiocViews</a>.</p></li>
+<li><p>Click on the package name to go to the package’s landing page.</p></li>
+<li><p>Under <code>Details</code>, find the <code>URL</code> to the package’s repository.</p></li>
+<li>
+<p>Open an issue asking if they would accept a pull request with the converted vignette. You can modify the following example to post on the issue.</p>
+<pre><code>Hi,
+
+I'm volunteering with [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd)
+and we're trying to replace all Bioconductor Sweave vignettes R Markdown
+vignettes. Would you be willing to accept a pull request with the R Markdown
+version of __vignette_name__ from one of our volunteers? We'll ask you to
+review and accept the pull request. You'll also need to bump the version
+number in your DESCRIPTION file so that the build machines will recognize
+that a new version is available.
+
+Thanks for your time.</code></pre>
+</li>
+</ol>
+</div>
+<div class="section level4">
 <h4 id="contact-the-maintainer-via-email">Contact the Maintainer via Email<a class="anchor" aria-label="anchor" href="#contact-the-maintainer-via-email"></a>
 </h4>
 <ol style="list-style-type: decimal">
@@ -152,68 +177,72 @@
 <pre><code>Hi,
 
 I'm volunteering with [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd)
-and we're trying to convert all Bioconductor Sweave vignettes into `.Rmd`
-files. Would you be willing to accept a pull request converting *vignette
-name* for *package name* from one of our volunteers? We'll take care of
-converting the file. We'll ask you to review and accept the pull request.
-You'll also need to bump the version number in your DESCRIPTION file so that
-the build machines will recognize that a new version is available.
+and we're trying to replace all Bioconductor Sweave vignettes with R Markdown
+vignettes. Would you be willing to accept a pull request converting
+__vignette_name__ for __package_name__ from one of our volunteers? We'll ask
+you to review and accept the pull request. You'll also need to bump the
+version number in your DESCRIPTION file so that the build machines will
+recognize that a new version is available.
 
 Thanks for your time.</code></pre>
 </li>
-<li><p>On the project board, set the <code>Status</code> to <code>Contacted</code> and <code>Last Modified</code> to today</p></li>
-<li><p>If the maintainer will accept the pull request, set the <code>Status</code> to <code>Maintainer Interested</code>. If they will not accept a pull request, set it to <code>Maintainer Not Interested</code>. If after two weeks, the maintainer is not responsive, set the <code>Status</code> to <code>Unresponsive</code>.</p></li>
-<li><p>Set <code>Last Modified</code> to today.</p></li>
 </ol>
+<p>After you contact the maintainer, set the <code>Status</code> to <code>Contacted</code> and <code>Last Modified</code> to today.</p>
+<p>Once you hear back from the maintainer, if they will accept the pull request, set the <code>Status</code> to <code>Maintainer Interested</code>. If they will not accept a pull request, set it to <code>Maintainer Not Interested</code>. If after two weeks, the maintainer is not responsive, set the <code>Status</code> to <code>Unresponsive</code> and update <code>Last Modified</code> to today’s date.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="convert-the--rnw-vignette-to--rmd">Convert the .Rnw vignette to .Rmd<a class="anchor" aria-label="anchor" href="#convert-the--rnw-vignette-to--rmd"></a>
+<h3 id="create-the-r-markdown--rmd-vignette-and-remove-the-sweave-vignette--rnw">Create the R Markdown (.Rmd) vignette and Remove the Sweave vignette (.Rnw)<a class="anchor" aria-label="anchor" href="#create-the-r-markdown--rmd-vignette-and-remove-the-sweave-vignette--rnw"></a>
 </h3>
-<p>Note: We use <code>file</code> to indicate the name of the Sweave file that we will convert to <code>.Rmd</code>.</p>
+<p>Note: We use <code>file</code> to indicate the name of the Sweave file that we will replace with an <code>.Rmd</code> file.</p>
 <ol style="list-style-type: decimal">
-<li>On the project board, set the <code>Status</code> to <code>In Progress</code>.</li>
-<li>Search for the package on <a href="https://bioconductor.org/packages/devel/BiocViews.html#___Software" class="external-link">BiocViews</a>.</li>
-<li>Click on the package to visit its landing page.</li>
-<li>Find the current Sweave file that you will convert. Use this to compare the with the <code>.Rmd</code> version you will create.</li>
-<li>Fork the repository you will work on.</li>
-<li>Clone your newly forked repository.</li>
-<li>Make a branch for your changes: <code>git switch -c file-Rmd</code>
+<li><p>On the project board, select a vignette and set the <code>Status</code> to <code>In Progress</code>. Also, write your GitHub username under <code>Assigned</code> and set <code>Last Modified</code> to today.</p></li>
+<li><p>Search for the package on <a href="https://bioconductor.org/packages/devel/BiocViews.html#___Software" class="external-link">BiocViews</a>.</p></li>
+<li><p>Click on the package to visit its landing page.</p></li>
+<li><p>Under <code>Documentation</code>, find PDF of the vignette you selected in step 1. You can see the name of the PDF by inspecting its URL. Use the content of the PDF as your guide when you create the R Markdown file. The content of the HTML generated by knitting the R Markdown file should closely match the contents of the PDF.</p></li>
+<li><p>Under <code>Details</code>, find the <code>URL</code> to the repository.</p></li>
+<li><p><a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo" class="external-link">Fork the repository</a> you will work on.</p></li>
+<li><p><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" class="external-link">Clone your newly forked repository.</a></p></li>
+<li><p>Make a branch for your changes: <code>git switch -c file-Rmd</code></p></li>
+<li><p>If <code>BiocStyle</code> and <code>knitr</code> aren’t in the DESCRIPTION file, add them under <code>Suggests</code>.`</p></li>
+<li><p>Add <code>VignetteBuilder: knitr</code> as a new line in the DESCRIPTION file.</p></li>
+<li><p>Commit your changes to your branch. Write a brief and precise commit message, such as <code># Add changes to the file to the commit     git add DESCRIPTION     # Create commit with the following message     git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'</code></p></li>
+<li><p>If you have <code>pandoc</code>, use it to preprocess. In the terminal <code># Copy the file.Rnw to file.tex since pandoc understands .tex files     cp file.Rnw file.tex     # Convert file.tex to Markdown and save as file.md     pandoc -s file.tex -o file.md     # Rename the Markdown file to R Markdown     mv file.md file.Rmd</code> Note: We currently use this method to preprocess files since we can’t directly convert from Sweave (.Rnw) to R Markdown (.Rmd). <code>pandoc</code> has some issues processing chunks of code, so we’ll have to manually correct these sections of the .Rmd file.</p></li>
+<li>
+<p>If the file doesn’t have <a href="https://yaml.org/" class="external-link">yaml</a> at the top, add it using the following as an example:</p>
+<pre><code>    ---
+    title: "Vignette Title"
+    author: "Vignette Author"
+    date: October 08, 2022
+    package: PackageName
+    vignette: &gt;
+      %\VignetteIndexEntry{Vignette Title}
+      %\VignetteEngine{knitr::rmarkdown}
+      %\VignetteEncoding{UTF-8}
+    output:
+      BiocStyle::html_document
+    ---
+    ```
+If the document will need a table of contents, you can alter the `output`
+as follows:</code></pre>
+<pre><code>output:
+  BiocStyle::html_documents
+    number_sections: yes
+    toc: yes
+    toc_depth: 4
+```</code></pre>
 </li>
-<li>If you have <code>pandoc</code>, use it to preprocess. In the terminal
-<ol style="list-style-type: decimal">
-<li><code>cp file.Rnw file.tex</code></li>
-<li><code>pandoc -s file.tex -o file.md</code></li>
-<li><code>mv file.md file.Rmd</code></li>
-</ol>
-</li>
-<li>If the file doesn’t have yaml at the top, add it using the following as an example:</li>
-</ol>
-<pre><code>---
-title: "Vignette Title"
-author: "Vignette Author"
-package: PackageName
-output: 
-  BiocStyle::html_document
-vignette: &gt;
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}  
----</code></pre>
-<ol start="10" style="list-style-type: decimal">
-<li>If <code>BiocStyle</code> isn’t in the DESCRIPTION file, add it under <code>Suggests</code>.`</li>
-<li>Convert any lines manually as necessary.</li>
-<li>If using Rstudio, <code>Knit</code> your new vignette and compare with the Sweave version.</li>
-<li>Repeat 10-12 until your new <code>HTML</code> vignettes accurately represents the Sweave version.</li>
-<li>Commit your changes with <code>git commit -m 'Convert file to Rmd'</code>.</li>
-<li>Remove the Sweave file with <code>git rm file.Rnw</code>
-</li>
-<li>Commit your change with <code>git commit -m 'Remove file.Rnw'</code>.</li>
-<li>Push your branch with <code>git push origin file-rmd</code>.</li>
-<li>On github.com, go to your forked repository and create a pull request.</li>
-<li>In the comments of the pull request, ask for a review with <code>@Bioconductor/sweave2rmd</code> and attach the <code>HTML</code> vignette.</li>
-<li>On the project board, set the <code>Status</code> to <code>PR Made</code>.</li>
-<li>If your reviewer leaves any comments, address them until your pull request is ready to merge.</li>
+<li><p>Convert any lines manually as necessary.</p></li>
+<li><p>If using RStudio, <code>Knit</code> your new vignette and compare with the Sweave version periodically to ensure that the HTML produced from your R Markdown file is representative of the PDF you found in step 4.</p></li>
+<li><p>Repeat 12-13 until your new <code>HTML</code> vignettes accurately represents the Sweave version. Note: If you get stuck or run into an error, ask for help on the #sweave2rmd channel on the <a href="https://community-bioc.slack.com" class="external-link">Bioconductor Community Slack</a>. Provide any helpful information, including error messages, the vignette and the package you’re working on.</p></li>
+<li><p>Add and commit your changes to your branch <code>git add file.Rmd     git commit -m 'Convert file to Rmd'</code></p></li>
+<li><p>Remove the Sweave file with <code>git rm file.Rnw</code> and commit the change with <code>git commit -m 'Remove file.Rnw'</code>.</p></li>
+<li><p><a href="https://github.com/git-guides/git-push" class="external-link">Push your branch</a> back to GitHub with <code>git push origin file-rmd</code>.</p></li>
+<li><p>On github.com, go to your forked repository and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request" class="external-link">create a pull request</a>.</p></li>
+<li><p>In the comments of the pull request, ask for a review from <code>@Bioconductor/sweave2rmd</code> and attach the PDF and HTML vignettes. If you opened an issue to communicate with the maintainer, you can automatically link the pull request and the set the issue to be closed upon merge by add the word “close” and the number of the issue in the comments–e.g., <code>close #192</code> to close issue #192.</p></li>
+<li><p>On the project board, set the <code>Status</code> to <code>PR Made</code> and update <code>Last     Modified</code>.</p></li>
+<li><p>Give us time to review your pull request.</p></li>
+<li><p>If your reviewer or the maintainer leaves any comments, address them until your pull request is ready to merge. Repeating 14-17 and 19 as necessary.</p></li>
 </ol>
 </div>
 <div class="section level3">
