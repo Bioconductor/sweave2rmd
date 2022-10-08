@@ -132,13 +132,16 @@ replace with an `.Rmd` file.
 10. Add `VignetteBuilder: knitr` as a new line in the DESCRIPTION file.
 11. Commit your changes to your branch. Write a brief and precise commit
     message, such as
+
     ```
     # Add changes to the file to the commit
     git add DESCRIPTION
     # Create commit with the following message
     git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'
     ```
+
 12. If you have `pandoc`, use it to preprocess. In the terminal
+
     ```
     # Copy the file.Rnw to file.tex since pandoc understands .tex files
     cp file.Rnw file.tex
@@ -147,12 +150,15 @@ replace with an `.Rmd` file.
     # Rename the Markdown file to R Markdown
     mv file.md file.Rmd
     ```
+
     Note: We currently use this method to preprocess files since we can't
     directly convert from Sweave (.Rnw) to R Markdown (.Rmd). `pandoc` has some
     issues processing chunks of code, so we'll have to manually correct these
     sections of the .Rmd file.
+
 13. If the file doesn't have [yaml](https://yaml.org/) at the top, add it using
     the following as an example:
+
     ```
     ---
     title: "Vignette Title"
@@ -167,8 +173,10 @@ replace with an `.Rmd` file.
       BiocStyle::html_document
     ---
     ```
+
     If the document will need a table of contents, you can alter the `output`
     as follows:
+
     ```
     output:
       BiocStyle::html_documents
@@ -176,6 +184,7 @@ replace with an `.Rmd` file.
         toc: yes
         toc_depth: 4
     ```
+
 14. Convert any lines manually as necessary.
 15. If using RStudio, `Knit` your new vignette and compare with the Sweave
     version periodically to ensure that the HTML produced from your R Markdown
@@ -186,10 +195,12 @@ replace with an `.Rmd` file.
     Provide any helpful information, including error messages, the vignette and
     the package you're working on.
 17. Add and commit your changes to your branch
+
     ```
     git add file.Rmd
     git commit -m 'Convert file to Rmd'
     ```
+
 18. Remove the Sweave file with `git rm file.Rnw` and commit the change with
     `git commit -m 'Remove file.Rnw'`.
 19. [Push your branch](https://github.com/git-guides/git-push) back to GitHub
