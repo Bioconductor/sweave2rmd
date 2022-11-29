@@ -85,7 +85,8 @@ convert to `.Rmd`.
 5. Fork the repository you will work on.
 6. Clone your newly forked repository.
 7. Make a branch for your changes: `git switch -c file-Rmd`
-8. If you have `pandoc`, use it to preprocess. In the terminal: `pandoc -f latex -t markdown file.Rnw -o file.Rmd` (note: replace *file.Rnw* and *file.Rmd* with the name of the vignette you're converting).
+8. If you have pandoc, use it to preprocess. In the terminal:
++   `pandoc -f latex -t markdown file.Rnw -o file.Rmd` (note: replace *file.Rnw* and *file.Rmd* with the name of the vignette you're converting).
 9. If the file doesn't have yaml at the top, add it using the following as an
    example:
   ```
