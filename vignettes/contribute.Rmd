@@ -180,8 +180,8 @@ replace with an `.Rmd` file.
     ```
     output:
       BiocStyle::html_documents
-        number_sections: yes
-        toc: yes
+        number_sections: true
+        toc: true
         toc_depth: 4
     ```
 
