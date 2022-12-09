@@ -241,7 +241,7 @@ When reviewing a pull request, confirm
   in general the presentation
 * the R Markdown file is representative of the Sweave document and follows best
   practices, such as replacing links to Bioconductor packages with calls to
-  BiocStyle's `r Biocpkg()`
+  BiocStyle's `Biocpkg()`
 * Following [Bioconductor Packages: Development, Maintenance, and Peer
 * Review](https://contributions.bioconductor.org/general.html), the package
   passes `R CMD build` and `R CMD check` with no errors
