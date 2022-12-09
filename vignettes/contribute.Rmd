@@ -222,9 +222,29 @@ replace with an `.Rmd` file.
 
 When reviewing a pull request, confirm
 
-* the `HTML` document is representative of the Sweave document
-* the `.Rmd` file is representative of the Sweave document
-* the `.Rmd` file uses best practices
+* the `.Rmd` file knits to `HTML`
+* the `.Rnw` file has been removed
+* in the `DESCRIPTION` file, `BiocStyle` and `knitr` are included in `Suggests`
+* if agreeed with the Maintainer,
+  * in the `.Rmd` file, the contributor is in the Author list in
+    the yaml. They can be added with the `affliation` hack to specify that
+    they performed the conversion from Sweave to R Markdown.
+  * in the `DESCRIPTION` file, the contributor is in `Authors@R`
+    with `role="ctb"` and a `comment` that they converted or translated the
+    Sweave document to R Markdown. If the contributor converted more than one,
+    the comment can be generalized to reduce the listing of separate vignettes.
+  * if this pull request includes a conversion from using the separate `Author`
+    and `Maintainer` lines into the `Authors@R` vector, check that the
+    `Authors@R` vector includes the maintainer as specified with `role='cre'`.
+    Note: the separate `Maintainer` line should be completely removed.
+* the `HTML` document is representative of the `PDF` in content and
+  in general the presentation
+* the R Markdown file is representative of the Sweave document and follows best
+  practices, such as replacing links to Bioconductor packages with calls to
+  BiocStyle's `r Biocpkg()`
+* Following [Bioconductor Packages: Development, Maintenance, and Peer
+* Review](https://contributions.bioconductor.org/general.html), the package
+  passes `R CMD build` and `R CMD check` with no errors
 
 Use the comments to communicate issues to resolve for the volunteer who made
 the pull request.
