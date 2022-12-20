@@ -255,12 +255,8 @@ git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'</code>
 <li>
 <p>If you have <code>pandoc</code>, use it to preprocess. In the
 terminal</p>
-<pre><code># Copy the file.Rnw to file.tex since pandoc understands .tex files
-cp file.Rnw file.tex
-# Convert file.tex to Markdown and save as file.md
-pandoc -s file.tex -o file.md
-# Rename the Markdown file to R Markdown
-mv file.md file.Rmd</code></pre>
+<pre><code>pandoc -f latex -t markdown file.Rnw -o file.Rmd
+# Replace file.Rnw and file.Rmd with the name of the vignette you're converting</code></pre>
 <p>Note: We currently use this method to preprocess files since we can’t
 directly convert from Sweave (.Rnw) to R Markdown (.Rmd).
 <code>pandoc</code> has some issues processing chunks of code, so we’ll
@@ -272,7 +268,7 @@ the top, add it using the following as an example:</p>
 <pre><code>---
 title: "Vignette Title"
 author: "Vignette Author"
-date: December 13, 2022
+date: December 20, 2022
 package: PackageName
 vignette: &gt;
   %\VignetteIndexEntry{Vignette Title}
@@ -394,7 +390,7 @@ request and remind them to bump the version in the DESCRIPTION file.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
