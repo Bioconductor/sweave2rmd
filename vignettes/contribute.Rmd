@@ -221,7 +221,7 @@ When reviewing a pull request, confirm
 * the `.Rmd` file knits to `HTML`
 * the `.Rnw` file has been removed
 * in the `DESCRIPTION` file, `BiocStyle` and `knitr` are included in `Suggests`
-* if agreeed with the Maintainer,
+* if agreed with the Maintainer,
   * in the `.Rmd` file, the contributor is in the Author list in
     the yaml. They can be added with the `affliation` hack to specify that
     they performed the conversion from Sweave to R Markdown.
@@ -238,8 +238,8 @@ When reviewing a pull request, confirm
 * the R Markdown file is representative of the Sweave document and follows best
   practices, such as replacing links to Bioconductor packages with calls to
   BiocStyle's `Biocpkg()`
-* Following [Bioconductor Packages: Development, Maintenance, and Peer
-* Review](https://contributions.bioconductor.org/general.html), the package
+* Following Bioconductor Packages: Development, Maintenance, and Peer
+* Review, https://contributions.bioconductor.org/general.html, the package
   passes `R CMD build` and `R CMD check` with no errors
 
 Use the comments to communicate issues to resolve for the volunteer who made
