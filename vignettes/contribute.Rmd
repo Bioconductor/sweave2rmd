@@ -140,15 +140,11 @@ replace with an `.Rmd` file.
     git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'
     ```
 
-12. If you have `pandoc`, use it to preprocess. In the terminal
+12. If you have `pandoc`, use it to preprocess. In the terminal 
 
     ```
-    # Copy the file.Rnw to file.tex since pandoc understands .tex files
-    cp file.Rnw file.tex
-    # Convert file.tex to Markdown and save as file.md
-    pandoc -s file.tex -o file.md
-    # Rename the Markdown file to R Markdown
-    mv file.md file.Rmd
+    pandoc -f latex -t markdown file.Rnw -o file.Rmd
+    # Replace file.Rnw and file.Rmd with the name of the vignette you're converting
     ```
 
     Note: We currently use this method to preprocess files since we can't
