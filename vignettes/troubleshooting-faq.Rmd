@@ -37,7 +37,7 @@ author:
 ### *Question:* How can I handle duplicate chunks?
 Background info: When working with R markdown files, duplicate code chunk names tend to prevent knitting and make the `Biocheck` fail.
 
-*Answer*: Look for the exact code chunk name/names and change the code chunk names. For example, if the chunk name is 'addition', you can make the other chunk name `addition1` or `addition_` as long as it does not change the meaning or make it hard for someone to understand the code. After the changes have been made, make sure you mention and highlight the changes you made to the code. This will help the reviewer and maintainer be aware of the changes. In case of any concerns about the changes, the reviewer or maintainer will let you know.
+*Answer*: Look for the exact code chunk name/names and change the code chunk names. For example, if the chunk name is 'addition', you can make the other chunk name `addition1` or `addition_` as long as it does not change the meaning or make it hard for someone to understand the code. After the changes have been made, make sure you mention and highlight the changes you made to the code in your pull request. This will help the reviewer and maintainer be aware of the changes. In case of any concerns about the changes, the reviewer or maintainer will let you know.
 
 If you do not understand the code or document well, always ask the maintainer or reviewers for what to do.
 
