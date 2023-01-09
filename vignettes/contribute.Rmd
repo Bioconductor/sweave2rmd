@@ -229,6 +229,8 @@ When reviewing a pull request, confirm
     with `role="ctb"` and a `comment` that they converted or translated the
     Sweave document to R Markdown. If the contributor converted more than one,
     the comment can be generalized to reduce the listing of separate vignettes.
+    For example, 
+    `person("First Name", "Last Name", role="ctb", comment = "'Title' vignette translation from Sweave to Rmarkdown / HTML")`
   * if this pull request includes a conversion from using the separate `Author`
     and `Maintainer` lines into the `Authors@R` vector, check that the
     `Authors@R` vector includes the maintainer as specified with `role='cre'`.
