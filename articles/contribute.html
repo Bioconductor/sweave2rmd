@@ -268,7 +268,7 @@ the top, add it using the following as an example:</p>
 <pre><code>---
 title: "Vignette Title"
 author: "Vignette Author"
-date: January 09, 2023
+date: January 12, 2023
 package: PackageName
 vignette: &gt;
   %\VignetteIndexEntry{Vignette Title}
@@ -327,13 +327,48 @@ as necessary.</p></li>
 </h3>
 <p>When reviewing a pull request, confirm</p>
 <ul>
-<li>the <code>.Rmd</code> file knits to <code>HTML</code>
+<li>
+<p>the <code>.Rmd</code> file knits to <code>HTML</code> Note: The
+best way to check is to <code>R CMD build</code> the package then check
+for the html in the tarball. This is how it is built on the Bioconductor
+build system. If you only knit the file, RStudio’s knitter will knit of
+errors in <code>DESCRIPTION</code> file.</p>
+<p>For example, where the package is <code>GenomicAlignments</code> and
+the vignette is <code>WorkingWithAlignedNucleotides.Rmd</code>:</p>
+<pre><code>$ # Build the package
+$ R CMD build GenomicAlignments
+* checking for file ‘GenomicAlignments/DESCRIPTION’ ... OK
+* preparing ‘GenomicAlignments’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+* creating vignettes ... OK
+* cleaning src
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* building ‘GenomicAlignments_1.33.1.tar.gz’
+
+$ # Check the tarball for the html
+$ tar ztf GenomicAlignments_1.33.1.tar.gz | grep 'doc/WorkingWithAlignedNucleotides'
+GenomicAlignments/inst/doc/WorkingWithAlignedNucleotides.R
+GenomicAlignments/inst/doc/WorkingWithAlignedNucleotides.Rmd
+GenomicAlignments/inst/doc/WorkingWithAlignedNucleotides.html</code></pre>
 </li>
-<li>the <code>.Rnw</code> file has been removed</li>
-<li>in the <code>DESCRIPTION</code> file, <code>BiocStyle</code> and
-<code>knitr</code> are included in <code>Suggests</code>
+<li><p>the <code>.Rnw</code> file has been removed</p></li>
+<li>
+<p>in the <code>DESCRIPTION</code> file</p>
+<ul>
+<li>
+<code>BiocStyle</code> and <code>knitr</code> are included in
+<code>Suggests</code>
 </li>
-<li>if agreed with the Maintainer,
+<li>the line <code>VignetteBuilder: knitr</code> exists</li>
+<li>any additional lines use the same spacing and indents as the
+existing document</li>
+</ul>
+</li>
+<li>
+<p>if agreed with the Maintainer,</p>
 <ul>
 <li>in the <code>.Rmd</code> file, the contributor is in the Author list
 in the yaml. They can be added with the <code>affliation</code> hack to
@@ -345,8 +380,9 @@ Markdown.</li>
 document to R Markdown. If the contributor converted more than one, the
 comment can be generalized to reduce the listing of separate vignettes.
 For example,
-<code>person("First Name", "Last Name", role="ctb", comment = "'Title' vignette translation from Sweave to Rmarkdown / HTML")</code>
-</li>
+<code>person("First Name", "Last Name", role="ctb",   comment="'Title' vignette translation from Sweave to Rmarkdown / HTML")</code>
+and
+<code>person("First Name", "Last Name", role="ctb",   comment="Vignette translations from Sweave to Rmarkdown / HTML")</code>.</li>
 <li>if this pull request includes a conversion from using the separate
 <code>Author</code> and <code>Maintainer</code> lines into the
 <code>Authors@R</code> vector, check that the <code>Authors@R</code>
@@ -355,21 +391,21 @@ vector includes the maintainer as specified with
 should be completely removed.</li>
 </ul>
 </li>
-<li>the <code>HTML</code> document is representative of the
-<code>PDF</code> in content and in general the presentation</li>
-<li>the R Markdown file is representative of the Sweave document and
+<li><p>the <code>HTML</code> document is representative of the
+<code>PDF</code> in content and in general the presentation</p></li>
+<li><p>the R Markdown file is representative of the Sweave document and
 follows best practices, such as replacing links to Bioconductor packages
-with calls to BiocStyle’s <code>Biocpkg()</code>
-</li>
-<li>Following <a href="https://contributions.bioconductor.org/general.html" class="external-link">Bioconductor
+with calls to BiocStyle’s <code>Biocpkg()</code></p></li>
+<li><p>Following <a href="https://contributions.bioconductor.org/general.html" class="external-link">Bioconductor
 Packages: Development, Maintenance, and Peer Review</a> the package
 passes <code>R CMD build</code> and <code>R CMD check</code> with no
-errors</li>
+errors</p></li>
 </ul>
 <p>Use the comments to communicate issues to resolve for the volunteer
 who made the pull request.</p>
 <p>When all issues are resolved, ask the maintainer to approve the pull
-request and remind them to bump the version in the DESCRIPTION file.</p>
+request and remind them to bump the version in the
+<code>DESCRIPTION</code> file and push to Bioconductor.</p>
 </div>
 </div>
   </div>
