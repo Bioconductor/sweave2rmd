@@ -113,9 +113,19 @@ the following: name, affiliation, and email. See below.</p>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  email<span class="sc">:</span> https<span class="sc">:</span><span class="er">//</span>www.roswellpark.org<span class="sc">/</span>martin<span class="sc">-</span>morgan</span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="question">
-<em>Question:</em><a class="anchor" aria-label="anchor" href="#question"></a>
+<h3 id="question-how-can-i-handle-duplicate-chunk-names">
+<em>Question:</em> How can I handle duplicate chunk names?<a class="anchor" aria-label="anchor" href="#question-how-can-i-handle-duplicate-chunk-names"></a>
 </h3>
+<p><em>Background info</em>: When working with R markdown files,
+duplicate code chunk names tend to prevent knitting and may cause
+<code>BiocCheck</code> to fail.</p>
+<p><em>Answer</em>: Look for the exact duplicate code chunk names and
+rename them. For example if the duplicate code chunk name is
+<code>example</code> you can rename the other chunk name to
+<code>example1</code> or <code>example_</code> as long as it does not
+change the meaning or make it hard for someone to understand the code.
+If you do not understand the code or document well, always ask the
+maintainer or reviewers for what to do.</p>
 </div>
 </div>
   </div>
