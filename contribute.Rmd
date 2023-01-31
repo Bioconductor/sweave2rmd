@@ -86,8 +86,8 @@ convert to `.Rmd`.
 3. Click on the package to visit its landing page.
 4. Find the current Sweave file that you will convert. Use this as reference to compare the
    with the `.Rmd` version you will create.
-5. Fork the repository you will work on. #sceenshot if assume user not familiar with github
-6. Clone your newly forked repository. #command if assume user not familiar
+5. Fork the repository you will work on. 
+6. Clone your newly forked repository. 
 7. Make a branch for your changes: `git switch -c file-Rmd`
 8. If you have `pandoc`, use it to preprocess. In the terminal
    1. `cp file.Rnw file.tex`
@@ -109,7 +109,7 @@ convert to `.Rmd`.
     %\VignetteEncoding{UTF-8}  
   ---
   ```
-10. If `BiocStyle` isn't in the DESCRIPTION file, add it under `Suggests`.`
+10. If `BiocStyle` isn't in the DESCRIPTION file, add it under `Suggests`.
 11. Convert any lines manually as necessary.
 12. If using Rstudio, `Knit` your new vignette and compare with the Sweave
     version.
