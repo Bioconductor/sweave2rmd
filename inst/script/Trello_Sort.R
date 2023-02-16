@@ -52,12 +52,13 @@ coreMaintained <- list(biocMaintained()$Package)
 # output that we want from the script which will help us categorize the
 # packages.
 pkgsList <- list()
-for(i in 1:length(pckgs)){
-  rank <- pkgDownloadRank(i, "software", version)
-  pkgsList[[i]] <- list(package = pckgs[[i]],
+for(i in 1:length(packageNames)){
+  rank <- pkgDownloadRank(i,"software" ,version)
+  pkgsList[[i]] <- list(package = packageNames[[i]],
                         rank = rank[[1]],
-                        priority = ifelse(rank[[1]] > threshold, "High", "Low"),
-                        status = ifelse(i %in% coreMaintained, "To do", "Contact Maintainer"))
+                        priority = ifelse(rank[[1]] > threshold, "High","Low"),
+                        status = ifelse(i %in% coreMaintained, "To do","Contact Maintainer"),
+                        Action = ifelse(i %in% pckgs, "Action Needed", "Action not needed"))
   
 }
 
