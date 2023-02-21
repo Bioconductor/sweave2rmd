@@ -140,15 +140,11 @@ replace with an `.Rmd` file.
     git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'
     ```
 
-12. If you have `pandoc`, use it to preprocess. In the terminal
+12. If you have `pandoc`, use it to preprocess. In the terminal 
 
     ```
-    # Copy the file.Rnw to file.tex since pandoc understands .tex files
-    cp file.Rnw file.tex
-    # Convert file.tex to Markdown and save as file.md
-    pandoc -s file.tex -o file.md
-    # Rename the Markdown file to R Markdown
-    mv file.md file.Rmd
+    pandoc -f latex -t markdown file.Rnw -o file.Rmd
+    # Replace file.Rnw and file.Rmd with the name of the vignette you're converting
     ```
 
     Note: We currently use this method to preprocess files since we can't
@@ -180,8 +176,8 @@ replace with an `.Rmd` file.
     ```
     output:
       BiocStyle::html_documents
-        number_sections: yes
-        toc: yes
+        number_sections: true
+        toc: true
         toc_depth: 4
     ```
 
@@ -222,12 +218,68 @@ replace with an `.Rmd` file.
 
 When reviewing a pull request, confirm
 
-* the `HTML` document is representative of the Sweave document
-* the `.Rmd` file is representative of the Sweave document
-* the `.Rmd` file uses best practices
+* the `.Rmd` file knits to `HTML`
+  Note: The best way to check is to `R CMD build` the package then check for
+  the html in the tarball. This is how it is built on the Bioconductor build
+  system. If you only knit the file, RStudio's knitter will knit of errors in
+  `DESCRIPTION` file.
+
+  For example, where the package is `GenomicAlignments` and the vignette is
+  `WorkingWithAlignedNucleotides.Rmd`:
+  ```
+  $ # Build the package
+  $ R CMD build GenomicAlignments
+  * checking for file ‘GenomicAlignments/DESCRIPTION’ ... OK
+  * preparing ‘GenomicAlignments’:
+  * checking DESCRIPTION meta-information ... OK
+  * cleaning src
+  * installing the package to build vignettes
+  * creating vignettes ... OK
+  * cleaning src
+  * checking for LF line-endings in source and make files and shell scripts
+  * checking for empty or unneeded directories
+  * building ‘GenomicAlignments_1.33.1.tar.gz’
+  
+  $ # Check the tarball for the html
+  $ tar ztf GenomicAlignments_1.33.1.tar.gz | grep 'doc/WorkingWithAlignedNucleotides'
+  GenomicAlignments/inst/doc/WorkingWithAlignedNucleotides.R
+  GenomicAlignments/inst/doc/WorkingWithAlignedNucleotides.Rmd
+  GenomicAlignments/inst/doc/WorkingWithAlignedNucleotides.html
+  ```
+* the `.Rnw` file has been removed
+* in the `DESCRIPTION` file
+  * `BiocStyle` and `knitr` are included in `Suggests`
+  * the line `VignetteBuilder: knitr` exists
+  * any additional lines use the same spacing and indents as the existing
+    document
+* if agreed with the Maintainer,
+  * in the `.Rmd` file, the contributor is in the Author list in
+    the yaml. They can be added with the `affliation` hack to specify that
+    they performed the conversion from Sweave to R Markdown.
+  * in the `DESCRIPTION` file, the contributor is in `Authors@R`
+    with `role="ctb"` and a `comment` that they converted or translated the
+    Sweave document to R Markdown. If the contributor converted more than one,
+    the comment can be generalized to reduce the listing of separate vignettes.
+    For example, `person("First Name", "Last Name", role="ctb",
+    comment="'Title' vignette translation from Sweave to Rmarkdown / HTML")`
+    and `person("First Name", "Last Name", role="ctb",
+    comment="Vignette translations from Sweave to Rmarkdown / HTML")`.
+  * if this pull request includes a conversion from using the separate `Author`
+    and `Maintainer` lines into the `Authors@R` vector, check that the
+    `Authors@R` vector includes the maintainer as specified with `role='cre'`.
+    Note: the separate `Maintainer` line should be completely removed.
+* the `HTML` document is representative of the `PDF` in content and
+  in general the presentation
+* the R Markdown file is representative of the Sweave document and follows best
+  practices, such as replacing links to Bioconductor packages with calls to
+  BiocStyle's `Biocpkg()`
+* Following [Bioconductor Packages: Development, Maintenance, and Peer
+  Review](https://contributions.bioconductor.org/general.html) the package
+  passes `R CMD build` and `R CMD check` with no errors
 
 Use the comments to communicate issues to resolve for the volunteer who made
 the pull request.
 
 When all issues are resolved, ask the maintainer to approve the pull request
-and remind them to bump the version in the DESCRIPTION file.
+and remind them to bump the version in the `DESCRIPTION` file and push to
+Bioconductor.

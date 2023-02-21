@@ -34,4 +34,14 @@ author:
   email: https://www.roswellpark.org/martin-morgan
 ``` 
 
-### *Question:*
+### *Question:* How can I handle duplicate chunk names?
+*Background info*: When working with R markdown files, duplicate code chunk
+names tend to prevent knitting and may cause `BiocCheck` to fail.
+
+*Answer*: Look for the exact duplicate code chunk names and rename them. For
+example if the duplicate code chunk name is `example` you can rename the other
+chunk name to `example1` or `example_` as long as it does not change the meaning
+or make it hard for someone to understand the code. If you do not understand the
+code or document well, always ask the maintainer or reviewers for what to do.
+
+
