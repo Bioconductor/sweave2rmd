@@ -39,14 +39,14 @@ biocPckgs <- biocPkgList(
 )
 
 # Create list of packages from vignette list in specified version
-pckgs <- list()
+pckgs<- c()
 for(i in packageNames){
   if( i %in% biocPckgs$Package)
     pckgs <- append(pckgs, i)
 }
 
 # Getting list of packages maintained by bioconductor
-coreMaintained <- list(biocMaintained()$Package)
+coreMaintained <- biocMaintained()$Package
 
 # For every package, their rank, priotrity and status is computed. This is the
 # output that we want from the script which will help us categorize the
@@ -57,8 +57,8 @@ for(i in 1:length(packageNames)){
   pkgsList[[i]] <- list(package = packageNames[[i]],
                         rank = rank[[1]],
                         priority = ifelse(rank[[1]] > threshold, "High","Low"),
-                        status = ifelse(i %in% coreMaintained, "To do","Contact Maintainer"),
-                        Action = ifelse(i %in% pckgs, "Action Needed", "Action not needed"))
+                        status = ifelse(i %in% coreMaintained, "To do","Contact maintainer"),
+                        Action = ifelse(i %in% pckgs, "Action needed", "Action not needed"))
   
 }
 
