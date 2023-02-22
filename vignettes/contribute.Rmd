@@ -221,8 +221,8 @@ When reviewing a pull request, confirm
 * the `.Rmd` file knits to `HTML`
   Note: The best way to check is to `R CMD build` the package then check for
   the html in the tarball. This is how it is built on the Bioconductor build
-  system. If you only knit the file, RStudio's knitter will knit of errors in
-  `DESCRIPTION` file.
+  system. If you only knit the file, RStudio's knitter will knit regardless of
+  errors in the `DESCRIPTION` file.
 
   For example, where the package is `GenomicAlignments` and the vignette is
   `WorkingWithAlignedNucleotides.Rmd`:
@@ -276,6 +276,39 @@ When reviewing a pull request, confirm
 * Following [Bioconductor Packages: Development, Maintenance, and Peer
   Review](https://contributions.bioconductor.org/general.html) the package
   passes `R CMD build` and `R CMD check` with no errors
+
+Here's a checklist you can use with the pull request:
+
+```
+- [ ] the `.Rmd` file knits to `HTML`
+- [ ] `R CMD build` runs without errors or timeouts
+- [ ] the tarball from `R CMD build` contains the `HTML` (check with the
+  following by substituting the package name and vignette name `tar ztf
+  package_name.tar.gz | grep 'doc/vignette_name'`)
+- [ ] the `.Rnw` file has been removed
+- [ ] in the `DESCRIPTION`, `BiocStyle` and `knitr` are listed in `Suggests`
+- [ ] in the `DESCRIPITON`, the line `VignetteBuilder: knitr` exists
+- [ ] any added lines use the same spacing and indents as the existing
+  document
+- [ ] if agreed with the Maintainer, the contributor is in the author list
+  in the `DESCRIPTION` file; refer to the contribution guide for acceptable
+  formats
+- [ ] if agreed with the Maintainer, the contributor is in the author list
+  in the vignette's YAML; refer to the contribution guide for acceptable formats
+- [ ] if this pull request includes a conversion from using the separate `Author`
+  and `Maintainer` lines into the `Authors@R` vector, check that the
+  `Authors@R` vector includes the maintainer as specified with `role='cre'`.
+- [ ] if this pull request includes a conversion from using the separate `Author`
+  and `Maintainer` lines into the `Authors@R` vector, the `Maintainer` line
+  is completely removed.
+- [ ] `HTML` document is representative of the `PDF` in content and
+  in general the presentation
+- [ ] Where the contributor was not able to preserve the content and presentation
+  of the `PDF` is noted as a comment in the pull request
+- [ ] the R Markdown file is representative of the Sweave document and follows
+  best practices, such as replacing links to Bioconductor packages with calls
+  to BiocStyle's `Biocpkg()`
+```
 
 Use the comments to communicate issues to resolve for the volunteer who made
 the pull request.
