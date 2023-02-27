@@ -20,8 +20,8 @@ Conduct](https://bioconductor.github.io/bioc_coc_multilingual/).
 ## Script to categorize vignettes
 
 This is a script that will sort a list of vignettes to be converted from sweave
-to Rmarkdown. The vignettes are sorted to help determine which vignettes need to be
-worked on and also help categorize the vignettes in the sweave2rmd project
+to Rmarkdown. The vignettes are sorted to help determine which vignettes need to
+be worked on and also help categorize the vignettes in the sweave2rmd project
 board. The script categorizes a list of packages in a given version of
 Bioconductor for a given repo with respect to a threshold value provided.
 
@@ -66,3 +66,4 @@ as contacting the maintainer are needed.
 
 The results from the script are output as an excel file. The desired output is
 an excel file because it will be easy to use, export and also share.
+
