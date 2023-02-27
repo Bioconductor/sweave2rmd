@@ -56,7 +56,7 @@ for(i in 1:length(packageNames)){
   rank <- pkgDownloadRank(i,"software" ,version)
   pkgsList[[i]] <- list(package = packageNames[[i]],
                         rank = rank[[1]],
-                        priority = ifelse(rank[[1]] > threshold, "High","Low"),
+                        priority = ifelse(rank[[1]] < threshold, "High","Low"),
                         status = ifelse(i %in% coreMaintained, "To do","Contact maintainer"),
                         Action = ifelse(i %in% pckgs, "Action needed", "Action not needed"))
   
