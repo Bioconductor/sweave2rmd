@@ -23,11 +23,12 @@ Conduct](https://bioconductor.github.io/bioc_coc_multilingual/).
 This is a script that will sort a list of vignettes to be converted from sweave
 to Rmarkdown. The vignettes are sorted to help know which vignettes need to be
 worked on and also help categorize the vignettes in the sweave2rmd project
-board.
+board. The script categorizes a list of packages in a given version of
+Bioconductor for a given repo with respect to a threshold value provided.
 
 ### How to use the script
 
-#### Declare variables
+#### Declare variables and settings
 
 Declare the variables used in the script and call the relevant libraries.
 
@@ -42,40 +43,16 @@ example in our script is 40, this means that any package that has a rank above
 
 -   **repo**: Repository used in the script
 
-#### Input data and extract package names
+#### How to run the script
 
-Input the list of vignettes, normally as urls, the script will split the url and
-extract the package names.
-Package names are normally found at the beginning of the url, then we extract
-that column and check for unique names, so that we have a package list where no
-package name is repeated.
+Pass the file containing the list of vignettes to be converted(which is the
+filepath declared earlier) to the script and run the script.
 
-Example from the script code:
-`packageNames <- unique(vignettes$V1)`
-
-#### Get packages in specified Bioconductor version
-
-We will then want to have a list of packages that are in the specified
-Bioconductor version. This will help us know which packages need to be worked
-on.
-
-#### Get the package maintainer
-
-To know if a package is ready to be worked on or needs further action, we will
-check for the maintainer. Below, we are checking for packages that are
-maintained by bioconductor core team.
-
-`coreMaintained <- biocMaintained()$Package`
-
-If it is maintained by bioconductor then it is ready to be converted if not we 
-will need to contact the maintainer first.
-
-#### Creating the final list to be used
+#### Output of the script
 
 For every package, their rank, priority, action category and status is
 computed. This is the output that we want from the script which will help us
 categorize the packages.
-
 
 -   **Rank** : The rank of the package as compared to all other packages
 
@@ -87,7 +64,5 @@ packages a high or low priority package.
 -   **Status**: Is the package ready to be converted or needs more steps like 
 contacting the maintainer.
 
-#### Output from the script
-The desired output is an excel file because it will be easy to use, export and 
-also share. The final list is converted to a data frame then output as an excel 
-file.
+The results from the script are output as an excel file. The desired output is
+an excel file because it will be easy to use, export and also share.
