@@ -31,12 +31,12 @@ board.
 
 Declare the variables used in the script and call the relevant libraries.
 
--   **Threshold** : threshold is the variable used to categorize a package as a 
+-   **threshold** : threshold is the variable used to categorize a package as a 
 high priority or low priority package. The threshold is set to a certain number,
 example in our script is 40, this means that any package that has a rank above 
 40 is considered as a high priority package.
 
--   **Version** : The Bioconductor version that will be used in the script.
+-   **version** : The Bioconductor version that will be used in the script.
 
 -   **filepath** : Link to the list of vignettes
 
