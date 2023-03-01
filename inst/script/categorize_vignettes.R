@@ -53,14 +53,17 @@ coreMaintained <- biocMaintained()$Package
 # packages.
 pkgsList <- list()
 for(i in 1:length(packageNames)){
+  if (packageNames[[i]] %in% pckgs){
   rank <- pkgDownloadRank(packageNames[[i]],"software" ,version)
   pkgsList[[i]] <- list(package = packageNames[[i]],
                         rank = rank[[1]],
                         priority = ifelse(rank[[1]] < threshold, "High","Low"),
-                        status = ifelse(packageNames[[i]] %in% coreMaintained, "To do","Contact maintainer"),
-                        action = ifelse(packageNames[[i]] %in% pckgs, "Action needed", "Action not needed"))
+                        status = ifelse(packageNames[[i]] %in% coreMaintained, "To do","Contact maintainer"))
+} else { 
+  pkgsList[[i]] <- list(package = packageNames[[i]],
+                        action ="Action not needed")
   
-}
+}}
 
 # Convert the list to a dataframe
 dataframe <- as.data.frame(do.call(rbind, pkgsList))
