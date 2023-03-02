@@ -3,11 +3,14 @@
 # to be worked on and also help categorize the vignettes in the sweave2rmd
 # project board.
 
-# Using the script: input the list of vignettes, the script first extracts the
-# package names then checks if the package is in the current bioconductor
-# version (the current version is 3.17) , outputs their rank and from the rank
-# assigns a priority based on the set threshold then checks for the maintainer
-# and assigns the package a status based on who the maintainer is.
+# Using the script: input the list of vignettes, the script first extracts the 
+#package names then checks if the package is in the current bioconductor 
+#version (the current version is 3.17) , outputs their rank and from the rank 
+#assigns a priority based on the set threshold then checks for the maintainer 
+#and assigns the package a status based on who the maintainer is. 
+#We also wantto know vignettes that are not in the current version so that we 
+#can classifytheir status as depracated. This will help know which vignettes 
+#are no longer in use.
 
 # Variables: threshold is the variable used to categorize a package as a high
 # priority or low priority package. The threshold is set to a certain number,
@@ -53,17 +56,21 @@ coreMaintained <- biocMaintained()$Package
 # packages.
 pkgsList <- list()
 for(i in 1:length(packageNames)){
-  if (packageNames[[i]] %in% pckgs){
-  rank <- pkgDownloadRank(packageNames[[i]],"software" ,version)
-  pkgsList[[i]] <- list(package = packageNames[[i]],
-                        rank = rank[[1]],
-                        priority = ifelse(rank[[1]] < threshold, "High","Low"),
-                        status = ifelse(packageNames[[i]] %in% coreMaintained, "To do","Contact maintainer"))
-} else { 
-  pkgsList[[i]] <- list(package = packageNames[[i]],
-                        action ="Action not needed")
+    if (packageNames[[i]] %in% pckgs){
+      rank <- pkgDownloadRank(packageNames[[i]],"software" ,version)
+      pkgsList[[i]] <- list(package = packageNames[[i]],
+                          rank = rank[[1]],
+                          priority = ifelse(rank[[1]] < threshold, "High","Low"),
+                          status = ifelse(packageNames[[i]] %in% coreMaintained, "To do","Contact maintainer"))
+} 
+    else { 
+      pkgsList[[i]] <- list(package = packageNames[[i]],
+                            rank=" ",
+                            priority=" ",
+                            status ="Depracated")
   
 }}
+
 
 # Convert the list to a dataframe
 dataframe <- as.data.frame(do.call(rbind, pkgsList))
