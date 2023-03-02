@@ -19,11 +19,11 @@ Conduct](https://bioconductor.github.io/bioc_coc_multilingual/).
 
 ## Script to categorize vignettes
 
-This is a script that will sort a list of vignettes to be converted from sweave
-to Rmarkdown. The vignettes are sorted to help determine which vignettes need to
-be worked on and also help categorize the vignettes in the sweave2rmd project
-board. The script categorizes a list of packages in a given version of
-Bioconductor for a given repo with respect to a threshold value provided.
+This is a script that will categorize a list of packages with Sweave vignettes.
+The vignettes are categorized to determine which vignettes need work on the
+sweave2rmd project board. The script takes a list of vignettes for a given
+version of Bioconductor for a given repo with respect to a threshold value
+provided.
 
 ### How to use the script
 
@@ -39,7 +39,13 @@ the priority.
 
 - **version** : The Bioconductor version that will be used in the script.
 
-- **filepath** : Link to the list of vignettes
+- **filepath** : Path to a file listing the full path of vignettes; e.g.,
+    ```
+    # Example data
+    ABSSeq/vignettes/ABSSeq.Rnw
+    ABarray/vignettes/ABarray.Rnw
+    ABarray/vignettes/ABarrayGUI.Rnw
+    ```
 
 - **repo**: Repository used in the script
 
@@ -59,7 +65,7 @@ output that we want from the script, which will help us categorize the packages.
 -  **rank** : The rank of the package as compared to all other packages
 
 -  **priority** : Based on rank and the threshold given in the script, is the
-packages a high or low priority package.
+package a high or low priority package.
 
 - **status**: Is the package ready for conversion or do additional steps, such 
 as contacting the maintainer are needed.
