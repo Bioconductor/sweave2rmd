@@ -45,24 +45,28 @@ the priority.
 
 #### How to run the script
 
-Pass the file containing the list of vignettes to be converted (which is the
-filepath declared earlier) to the script and run the script.
+Run this command in your terminal `Rscript categorize_vignettes.R`
+
+The syntax remains same for Windows/MacOS/Linux/Ubuntu.
+
+**Note**: Open a Terminal from the location of the script for the command to work.
 
 #### Output of the script
 
-For every package, their rank, priority, action category, and status are
-computed. This is the output that we want from the script, which will help us
-categorize the packages.
+For every package, their rank, priority, and status are computed. This is the
+output that we want from the script, which will help us categorize the packages.
 
--  **Rank** : The rank of the package as compared to all other packages
+-  **rank** : The rank of the package as compared to all other packages
 
--  **Priority** : Based on rank and the threshold given in the script, is the
+-  **priority** : Based on rank and the threshold given in the script, is the
 packages a high or low priority package.
 
--  **Action** : Does the package need conversion or not?
-
-- **Status**: Is the package ready for conversion or do additional steps, such 
+- **status**: Is the package ready for conversion or do additional steps, such 
 as contacting the maintainer are needed.
+
+For vignettes not in the specified version, the rank, priority and action are
+not computed. Their status is specified as deprecated which helps know which
+vignettes are no longer maintained or used.
 
 The results from the script are output as an excel file. The desired output is
 an excel file because it will be easy to use, export and also share.
