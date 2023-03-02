@@ -67,7 +67,7 @@ for(i in 1:length(packageNames)){
       pkgsList[[i]] <- list(package = packageNames[[i]],
                             rank=" ",
                             priority=" ",
-                            status ="Depracated")
+                            status ="Deprecated")
   
 }}
 
