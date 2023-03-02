@@ -8,8 +8,8 @@
 #version (the current version is 3.17) , outputs their rank and from the rank 
 #assigns a priority based on the set threshold then checks for the maintainer 
 #and assigns the package a status based on who the maintainer is. 
-#We also wantto know vignettes that are not in the current version so that we 
-#can classifytheir status as depracated. This will help know which vignettes 
+#We also want to know vignettes that are not in the current version so that we 
+#can classify their status as deprecated. This will help know which vignettes 
 #are no longer in use.
 
 # Variables: threshold is the variable used to categorize a package as a high
