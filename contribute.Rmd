@@ -110,6 +110,19 @@ convert to `.Rmd`.
   ---
   ```
 10. If `BiocStyle` isn't in the DESCRIPTION file, add it under `Suggests`.
+11. In the DESCRIPTION file, convert the Authors section to conform to:
+
+  ```
+  ---
+Authors@R: c(
+    person("First Name", "Last Name", role="aut"),
+    person("First Name", "Last Name", role="ctb"),
+    person("Your First Name", "Your Last Name", role = "ctb",
+        comment = "Converted YOUR_VIGNETTE_NAME vignette from Sweave to RMarkdown / HTML."),
+    person("Bioconductor Package Maintainer",
+        email = "maintainer@bioconductor.org", role="cre"))`
+  ---
+  ```
 11. Convert any lines manually as necessary.
 12. If using Rstudio, `Knit` your new vignette and compare with the Sweave
     version.
