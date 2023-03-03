@@ -208,7 +208,7 @@ replace with an `.Rmd` file.
     link the pull request and the set the issue to be closed upon merge by add
     the word "close" and the number of the issue in the comments--e.g.,
     `close #192` to close issue #192.
-22. On the project board, set the `Status` to `PR Made` and update `Last
+22. On the project board, set the `Status` to `PR Needs Review` and update `Last
     Modified`.
 23. Give us time to review your pull request.
 24. If your reviewer or the maintainer leaves any comments, address them until
