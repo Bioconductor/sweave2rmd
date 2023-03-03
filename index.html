@@ -77,11 +77,54 @@
 <div class="section level1">
 <div class="page-header"><h1 id="sweave2rmd">Sweave2Rmd<a class="anchor" aria-label="anchor" href="#sweave2rmd"></a>
 </h1></div>
+<div class="section level2">
+<h2 id="description-of-the-project">Description of the project<a class="anchor" aria-label="anchor" href="#description-of-the-project"></a>
+</h2>
 <p>Sweave2Rmd is a project to convert all <a href="https://bioconductor.org" class="external-link">Bioconductor</a> Sweave vignettes to Rmd.</p>
 <p>See the project <a href="https://trello.com/b/nJHqzR1j/bioconductor-vignettes-rnw-rmd-project" class="external-link">Trello Board</a> for vignettes that need converting and the <a href="https://github.com/orgs/Bioconductor/projects/2" class="external-link">Github Project</a> for the status of vignettes being converted.</p>
 <p>If you’d like to volunteer, see contribute.Rmd.</p>
 <p>If you’re a Bioconductor maintainer who needs help converting to <code>.Rmd</code>, open an issue in your repository and ask <code>@Bioconductor/sweave2rmd</code> for help converting.</p>
 <p>This project follows the <a href="https://bioconductor.github.io/bioc_coc_multilingual/" class="external-link">Bioconductor Code of Conduct</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="script-to-categorize-vignettes">Script to categorize vignettes<a class="anchor" aria-label="anchor" href="#script-to-categorize-vignettes"></a>
+</h2>
+<p>This is a script that will categorize a list of packages with Sweave vignettes. The vignettes are categorized to determine which vignettes need work on the sweave2rmd project board. The script takes a list of vignettes for a given version of Bioconductor for a given repo with respect to a threshold value provided.</p>
+<div class="section level3">
+<h3 id="how-to-use-the-script">How to use the script<a class="anchor" aria-label="anchor" href="#how-to-use-the-script"></a>
+</h3>
+<div class="section level4">
+<h4 id="declare-variables-and-settings">Declare variables and settings<a class="anchor" aria-label="anchor" href="#declare-variables-and-settings"></a>
+</h4>
+<p>Declare the variables to be used in the script and call the relevant libraries.</p>
+<ul>
+<li><p><strong>threshold</strong>: the variable used to classify a package as a high-priority or low-priority package. The threshold is set to a certain number, example in our script is 40, this means that any package that has a rank below 40 is considered a high-priority package. The lower the rank number, the higher the priority.</p></li>
+<li><p><strong>version</strong> : The Bioconductor version that will be used in the script.</p></li>
+<li><p><strong>filepath</strong> : Path to a file listing the full path of vignettes; e.g., <code># Example data     ABSSeq/vignettes/ABSSeq.Rnw     ABarray/vignettes/ABarray.Rnw     ABarray/vignettes/ABarrayGUI.Rnw</code></p></li>
+<li><p><strong>repo</strong>: Repository used in the script</p></li>
+</ul>
+</div>
+<div class="section level4">
+<h4 id="how-to-run-the-script">How to run the script<a class="anchor" aria-label="anchor" href="#how-to-run-the-script"></a>
+</h4>
+<p>Run this command in your terminal <code>Rscript categorize_vignettes.R</code></p>
+<p>The syntax remains same for Windows/MacOS/Linux/Ubuntu.</p>
+<p><strong>Note</strong>: Open a Terminal from the location of the script for the command to work.</p>
+</div>
+<div class="section level4">
+<h4 id="output-of-the-script">Output of the script<a class="anchor" aria-label="anchor" href="#output-of-the-script"></a>
+</h4>
+<p>For every package, their rank, priority, and status are computed. This is the output that we want from the script, which will help us categorize the packages.</p>
+<ul>
+<li><p><strong>rank</strong> : The rank of the package as compared to all other packages</p></li>
+<li><p><strong>priority</strong> : Based on rank and the threshold given in the script, is the package a high or low priority package.</p></li>
+<li><p><strong>status</strong>: Is the package ready for conversion or do additional steps, such as contacting the maintainer are needed.</p></li>
+</ul>
+<p>For vignettes not in the specified version, the rank, priority and action are not computed. Their status is specified as deprecated which helps know which vignettes are no longer maintained or used.</p>
+<p>The results from the script are output as an excel file. The desired output is an excel file because it will be easy to use, export and also share.</p>
+</div>
+</div>
+</div>
 </div>
   </div>
 
