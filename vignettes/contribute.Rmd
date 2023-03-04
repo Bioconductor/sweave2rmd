@@ -24,11 +24,10 @@ There are many ways to contribute to our project.
 
 * Required
   - [git](https://git-scm.com/docs/gittutorial)
-  - [feature request
-    workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
+  - [feature request workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
   - [R](https://www.rstudio.com/resources/books/)
-  - R Markdown,[Rmarkdown book](https://bookdown.org/yihui/rmarkdown/) or [Rstudio Rmarkdown
-    cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
+  - R Markdown,[Rmarkdown book](https://bookdown.org/yihui/rmarkdown/) or
+    [Rstudio Rmarkdown cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
 
 * Familiarity with
   - [Bioconductor](https://bioconductor.org)
@@ -130,7 +129,30 @@ replace with an `.Rmd` file.
 9. If `BiocStyle` and `knitr` aren't in the DESCRIPTION file, add them under
    `Suggests`.`
 10. Add `VignetteBuilder: knitr` as a new line in the DESCRIPTION file.
-11. Commit your changes to your branch. Write a brief and precise commit
+11. If agreed with the maintainer, add yourself as a contributor. In the
+    DESCRIPTION file, convert the Authors section to conform to the following
+    block.
+
+    ```
+    Authors@R: c(
+        person("First Name", "Last Name", role = "aut"),
+        person("First Name", "Last Name", role = "ctb"),
+        person("Your First Name", "Your Last Name", role = "ctb",
+            comment = "Converted YOUR_VIGNETTE_NAME vignette from Sweave to RMarkdown / HTML."),
+        person("Bioconductor Package Maintainer",
+            email = "maintainer@bioconductor.org", role = "cre"))
+    ```
+
+    The following roles indicate the following
+    * "cre" - maintainer
+    * "aut" - author 
+    * "ctb" - contributor
+
+    Note: that the `Maintainer` in this case is `Bioconductor Package Maintainer`.
+    The separate maintainer line has been deleted and moved into the
+    `Authors@R`. If you don't remove the separate maintainer line, the package
+    will fail to pass on the build report.
+12. Commit your changes to your branch. Write a brief and precise commit
     message, such as
 
     ```
@@ -139,20 +161,6 @@ replace with an `.Rmd` file.
     # Create commit with the following message
     git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'
     ```
-11. In the DESCRIPTION file, convert the Authors section to conform to:
-
-  ```
-  ---
-Authors@R: c(
-    person("First Name", "Last Name", role="aut"),
-    person("First Name", "Last Name", role="ctb"),
-    person("Your First Name", "Your Last Name", role = "ctb",
-        comment = "Converted YOUR_VIGNETTE_NAME vignette from Sweave to RMarkdown / HTML."),
-    person("Bioconductor Package Maintainer",
-        email = "maintainer@bioconductor.org", role="cre"))
-  ---
-  ```
-12. Remove the `Maintainer` line from the DESCRIPTION file.
 13. If you have `pandoc`, use it to preprocess. In the terminal 
 
     ```
@@ -171,7 +179,7 @@ Authors@R: c(
     ```
     ---
     title: "Vignette Title"
-    author: "Vignette Author"
+    author: Vignette Author
     date: `r format(Sys.Date(), "%B %d, %Y")`
     package: PackageName
     vignette: >
@@ -194,37 +202,62 @@ Authors@R: c(
         toc_depth: 4
     ```
 
-15. Convert any lines manually as necessary.
-16. If using RStudio, `Knit` your new vignette and compare with the Sweave
+15. If agreed with the maintainer, add yourself as a contributor:
+
+    ```
+    ---
+    title: "Vignette Title"
+    author:
+      - name: Vignette Author
+        affiliation: Vignette Author's Institution
+      - name: Your Name
+        affiliation: "Vignette translation from Sweave to R Markdown / HTML"
+    date: `r format(Sys.Date(), "%B %d, %Y")`
+    package: PackageName
+    vignette: >
+      %\VignetteIndexEntry{Vignette Title}
+      %\VignetteEngine{knitr::rmarkdown}
+      %\VignetteEncoding{UTF-8}
+    output:
+      BiocStyle::html_document
+    ---
+    ```
+
+    Note: Using `affiliation` to give attribution is a hack; however, when
+    you knit the .Rmd, it will display your name and only the value of
+    `affiliation`.
+
+16. Convert any lines manually as necessary.
+17. If using RStudio, `Knit` your new vignette and compare with the Sweave
     version periodically to ensure that the HTML produced from your R Markdown
     file is representative of the PDF you found in step 4.
-17. Repeat 12-13 until your new `HTML` vignettes accurately represents the
+18. Repeat 16-17 until your new `HTML` vignettes accurately represents the
     Sweave version. Note: If you get stuck or run into an error, ask for help
     on the #sweave2rmd channel on the [Bioconductor Community Slack](https://community-bioc.slack.com).
     Provide any helpful information, including error messages, the vignette and
     the package you're working on.
-18. Add and commit your changes to your branch
+19. Add and commit your changes to your branch
 
     ```
     git add file.Rmd
     git commit -m 'Convert file to Rmd'
     ```
 
-19. Remove the Sweave file with `git rm file.Rnw` and commit the change with
+20. Remove the Sweave file with `git rm file.Rnw` and commit the change with
     `git commit -m 'Remove file.Rnw'`.
-20. [Push your branch](https://github.com/git-guides/git-push) back to GitHub
+21. [Push your branch](https://github.com/git-guides/git-push) back to GitHub
     with `git push origin file-rmd`.
-21. On github.com, go to your forked repository and [create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
-22. In the comments of the pull request, ask for a review from
+22. On github.com, go to your forked repository and [create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+23. In the comments of the pull request, ask for a review from
     `@Bioconductor/sweave2rmd` and attach the PDF and HTML vignettes. If you
     opened an issue to communicate with the maintainer, you can automatically
     link the pull request and the set the issue to be closed upon merge by add
     the word "close" and the number of the issue in the comments--e.g.,
     `close #192` to close issue #192.
-23. On the project board, set the `Status` to `PR Needs Review` and update `Last
+24. On the project board, set the `Status` to `PR Needs Review` and update `Last
     Modified`.
-24. Give us time to review your pull request.
-25. If your reviewer or the maintainer leaves any comments, address them until
+25. Give us time to review your pull request.
+26. If your reviewer or the maintainer leaves any comments, address them until
     your pull request is ready to merge. Repeating 14-17 and 19 as necessary.
 
 ### Review a Pull Request
