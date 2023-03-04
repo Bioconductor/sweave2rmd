@@ -245,6 +245,29 @@ DESCRIPTION file, add them under <code>Suggests</code>.`</p></li>
 <li><p>Add <code>VignetteBuilder: knitr</code> as a new line in the
 DESCRIPTION file.</p></li>
 <li>
+<p>If agreed with the maintainer, add yourself as a contributor. In
+the DESCRIPTION file, convert the Authors section to conform to the
+following block.</p>
+<pre><code><span><span class="va">Authors</span><span class="op">@</span><span class="va">R</span><span class="op">:</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/person.html" class="external-link">person</a></span><span class="op">(</span><span class="st">"First Name"</span>, <span class="st">"Last Name"</span>, role <span class="op">=</span> <span class="st">"aut"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/person.html" class="external-link">person</a></span><span class="op">(</span><span class="st">"First Name"</span>, <span class="st">"Last Name"</span>, role <span class="op">=</span> <span class="st">"ctb"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/person.html" class="external-link">person</a></span><span class="op">(</span><span class="st">"Your First Name"</span>, <span class="st">"Your Last Name"</span>, role <span class="op">=</span> <span class="st">"ctb"</span>,</span>
+<span>        comment <span class="op">=</span> <span class="st">"Converted YOUR_VIGNETTE_NAME vignette from Sweave to RMarkdown / HTML."</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/person.html" class="external-link">person</a></span><span class="op">(</span><span class="st">"Bioconductor Package Maintainer"</span>,</span>
+<span>        email <span class="op">=</span> <span class="st">"maintainer@bioconductor.org"</span>, role <span class="op">=</span> <span class="st">"cre"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
+<p>The following roles indicate the following</p>
+<ul>
+<li>“cre” - maintainer</li>
+<li>“aut” - author</li>
+<li>“ctb” - contributor</li>
+</ul>
+<p>Note: that the <code>Maintainer</code> in this case is
+<code>Bioconductor Package Maintainer</code>. The separate maintainer
+line has been deleted and moved into the <code>Authors@R</code>. If you
+don’t remove the separate maintainer line, the package will fail to pass
+on the build report.</p>
+</li>
+<li>
 <p>Commit your changes to your branch. Write a brief and precise
 commit message, such as</p>
 <pre><code># Add changes to the file to the commit
@@ -252,21 +275,6 @@ git add DESCRIPTION
 # Create commit with the following message
 git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'</code></pre>
 </li>
-<li><p>In the DESCRIPTION file, convert the Authors section to conform
-to:</p></li>
-</ol>
-<pre><code>---
-Authors@R: c(
-  person("First Name", "Last Name", role="aut"),
-  person("First Name", "Last Name", role="ctb"),
-  person("Your First Name", "Your Last Name", role = "ctb",
-      comment = "Converted YOUR_VIGNETTE_NAME vignette from Sweave to RMarkdown / HTML."),
-  person("Bioconductor Package Maintainer",
-      email = "maintainer@bioconductor.org", role="cre"))
----</code></pre>
-<ol start="12" style="list-style-type: decimal">
-<li><p>Remove the <code>Maintainer</code> line from the DESCRIPTION
-file.</p></li>
 <li>
 <p>If you have <code>pandoc</code>, use it to preprocess. In the
 terminal</p>
@@ -282,7 +290,7 @@ have to manually correct these sections of the .Rmd file.</p>
 the top, add it using the following as an example:</p>
 <pre><code>---
 title: "Vignette Title"
-author: "Vignette Author"
+author: Vignette Author
 date: March 04, 2023
 package: PackageName
 vignette: &gt;
@@ -300,12 +308,34 @@ output:
 <span>    <span class="va">toc</span><span class="op">:</span> <span class="va">true</span></span>
 <span>    <span class="va">toc_depth</span><span class="op">:</span> <span class="fl">4</span></span></code></pre>
 </li>
+<li>
+<p>If agreed with the maintainer, add yourself as a contributor:</p>
+<pre><code>---
+title: "Vignette Title"
+author:
+  - name: Vignette Author
+    affiliation: Vignette Author's Institution
+  - name: Your Name
+    affiliation: "Vignette translation from Sweave to R Markdown / HTML"
+date: March 04, 2023
+package: PackageName
+vignette: &gt;
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document
+---</code></pre>
+<p>Note: Using <code>affiliation</code> to give attribution is a hack;
+however, when you knit the .Rmd, it will display your name and only the
+value of <code>affiliation</code>.</p>
+</li>
 <li><p>Convert any lines manually as necessary.</p></li>
 <li><p>If using RStudio, <code>Knit</code> your new vignette and compare
 with the Sweave version periodically to ensure that the HTML produced
 from your R Markdown file is representative of the PDF you found in step
 4.</p></li>
-<li><p>Repeat 12-13 until your new <code>HTML</code> vignettes
+<li><p>Repeat 16-17 until your new <code>HTML</code> vignettes
 accurately represents the Sweave version. Note: If you get stuck or run
 into an error, ask for help on the #sweave2rmd channel on the <a href="https://community-bioc.slack.com" class="external-link">Bioconductor Community
 Slack</a>. Provide any helpful information, including error messages,
