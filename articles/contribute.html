@@ -252,6 +252,21 @@ git add DESCRIPTION
 # Create commit with the following message
 git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'</code></pre>
 </li>
+<li><p>In the DESCRIPTION file, convert the Authors section to conform
+to:</p></li>
+</ol>
+<pre><code>---
+Authors@R: c(
+  person("First Name", "Last Name", role="aut"),
+  person("First Name", "Last Name", role="ctb"),
+  person("Your First Name", "Your Last Name", role = "ctb",
+      comment = "Converted YOUR_VIGNETTE_NAME vignette from Sweave to RMarkdown / HTML."),
+  person("Bioconductor Package Maintainer",
+      email = "maintainer@bioconductor.org", role="cre"))
+---</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li><p>Remove the <code>Maintainer</code> line from the DESCRIPTION
+file.</p></li>
 <li>
 <p>If you have <code>pandoc</code>, use it to preprocess. In the
 terminal</p>
@@ -268,7 +283,7 @@ the top, add it using the following as an example:</p>
 <pre><code>---
 title: "Vignette Title"
 author: "Vignette Author"
-date: March 03, 2023
+date: March 04, 2023
 package: PackageName
 vignette: &gt;
   %\VignetteIndexEntry{Vignette Title}
