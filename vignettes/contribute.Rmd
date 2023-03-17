@@ -202,6 +202,14 @@ replace with an `.Rmd` file.
         toc_depth: 4
     ```
 
+    Note: Where the date is shown, you want to put the following inline code
+    surrounded by backticks, so that it will be updated whenever the vignette
+    is compiled:
+
+    ```
+    r format(Sys.Date(), "%B %d, %Y")
+    ```
+
 15. If agreed with the maintainer, add yourself as a contributor:
 
     ```
