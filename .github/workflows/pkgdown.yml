@@ -1,6 +1,7 @@
 # Based on https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml
 
 on:
+  workflow_dispatch:
   push:
     branches: main
   pull_request:
