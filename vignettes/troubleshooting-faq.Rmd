@@ -44,4 +44,26 @@ chunk name to `example1` or `example_` as long as it does not change the meaning
 or make it hard for someone to understand the code. If you do not understand the
 code or document well, always ask the maintainer or reviewers for what to do.
 
+### *Question:* Having problem while checking `R CMD build` contains the `HTML`?
+*Background info*: While converting a Sweave vignette to R markdown vignette sometimes
+ we face problem while doing R CMD check using 
+ `tar ztf package_name.tar.gz | grep 'doc/vignette_name'` even after the R CMD build
+ runs succesfully without any errors or timeouts this could happen if we missed some important lines 
+ in YAML header.
 
+ *Answer*: Look for the file which is actually problematic try to run 
+ `tar ztf package_name.tar.gz | grep doc` in your package terminal if it still
+ does not build the PDF or the html file try removing your `.Rmd` file and add
+ `.Rnw` file if it build the PDF that means you have problem in your .Rmd file
+ one of the possible solution of the problem might be that your
+ `%\VignetteEngine{knitr::rmarkdown}` line is missing in the YAML header, you can try to add 
+ `%\VignetteEngine{knitr::rmarkdown}` line in YAML header
+ and again run `R CMD build` and `R CMD check` this happens because the YAML header plays very
+ important role in the conversion
+ process, The first few lines of the vignette contain important 
+ [metadata](https://r-pkgs.org/vignettes.html#metadata)
+ you can refer for more information regarding YAML header. If you do not understand the 
+ code or [contubute](https://bioconductor.github.io/sweave2rmd/articles/contribute.html) 
+ document well, always ask the maintainer or reviewers for what to do.
+ 
+ 
