@@ -338,7 +338,6 @@ When reviewing a pull request, confirm
   
   For example, you can see the formatting of code blocks below:
 ````markdown
-
   # Examples of Code Block Formatting
 
   You can see here in this example that we have a single space before and after
