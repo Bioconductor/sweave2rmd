@@ -338,9 +338,9 @@ When reviewing a pull request, confirm
   
   For example, you can see the formatting of code blocks below:
 ````markdown
-  # Examples of Code Block Formatting
+  # Examples of Code Blocks Formatting
 
-  You can see here in this example that we have a single space before and after
+  You can see here in this example that we have a single blank line before and after
   every code chunk, section, or paragraph. Also, you will notice that there are no
   blank lines before the start or after the end of the code within the code block.
 
