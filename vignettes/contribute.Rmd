@@ -379,7 +379,7 @@ Here's a checklist you can use with the pull request:
   lines to the `Authors@R` vector, please ensure that :
   - [ ] the `Authors@R` vector includes the maintainer as specified with `role='cre'`.
   - [ ] the `Maintainer` line is completely removed.
-  - [ ] `HTML` document is representative of the `PDF` in content and
+- [ ] `HTML` document is representative of the `PDF` in content and
   in general the presentation
 - [ ] Where the contributor was not able to preserve the content and presentation
   of the `PDF` is noted as a comment in the pull request
