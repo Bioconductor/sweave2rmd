@@ -368,18 +368,18 @@ Here's a checklist you can use with the pull request:
   package_name.tar.gz | grep 'doc/vignette_name'`)
 - [ ] the `.Rnw` file has been removed
 - In the `DESCRIPTION` file :
-- [ ] `BiocStyle` and `knitr` are listed in `Suggests`
-- [ ] the line `VignetteBuilder: knitr` exists
-- [ ] any added lines use the same spacing and indents as the existing document
-- If agreed with the Maintainer, 
-- [ ] the contributor is in the author list in the `DESCRIPTION` file.
-- [ ] the contributor is in the author list in the vignette's YAML.
-  Refer to the contribution guide for acceptable formats
+  - [ ] `BiocStyle` and `knitr` are listed in `Suggests`
+  - [ ] the line `VignetteBuilder: knitr` exists
+  - [ ] any added lines use the same spacing and indents as the existing document
+- If agreed with the Maintainer :
+  - [ ] the contributor is in the author list in the `DESCRIPTION` file.
+  - [ ] the contributor is in the author list in the vignette's YAML.
+  - Refer to the contribution guide for acceptable formats
 - If this pull request involves converting from separate `Author` and  `Maintainer`
   lines to the `Authors@R` vector, please ensure that :
-- [ ] the `Authors@R` vector includes the maintainer as specified with `role='cre'`.
-- [ ] the `Maintainer` line is completely removed.
-- [ ] `HTML` document is representative of the `PDF` in content and
+  - [ ] the `Authors@R` vector includes the maintainer as specified with `role='cre'`.
+  - [ ] the `Maintainer` line is completely removed.
+  - [ ] `HTML` document is representative of the `PDF` in content and
   in general the presentation
 - [ ] Where the contributor was not able to preserve the content and presentation
   of the `PDF` is noted as a comment in the pull request
