@@ -367,16 +367,15 @@ Here's a checklist you can use with the pull request:
   following by substituting the package name and vignette name `tar ztf
   package_name.tar.gz | grep 'doc/vignette_name'`)
 - [ ] the `.Rnw` file has been removed
-- In the `DESCRIPTION` file :
+- In the `DESCRIPTION` file
   - [ ] `BiocStyle` and `knitr` are listed in `Suggests`
   - [ ] the line `VignetteBuilder: knitr` exists
   - [ ] any added lines use the same spacing and indents as the existing document
-- If agreed with the Maintainer :
-  - [ ] the contributor is in the author list in the `DESCRIPTION` file.
-  - [ ] the contributor is in the author list in the vignette's YAML.
-  - Refer to the contribution guide for acceptable formats
+- If agreed with the Maintainer
+  - [ ] the contributor is in the author list in the `DESCRIPTION` file*.
+  - [ ] the contributor is in the author list in the vignette's YAML*.
 - If this pull request involves converting from separate `Author` and  `Maintainer`
-  lines to the `Authors@R` vector, please ensure that :
+  lines to the `Authors@R` vector, please ensure that
   - [ ] the `Authors@R` vector includes the maintainer as specified with `role='cre'`.
   - [ ] the `Maintainer` line is completely removed.
 - [ ] `HTML` document is representative of the `PDF` in content and
@@ -392,6 +391,8 @@ Here's a checklist you can use with the pull request:
   in R Studio.
 - [ ] Code blocks are surrounded by a blank line, and there are no blank lines
   before the start or after the end of the code within the code block. 
+
+* Refer to the contribution guide for acceptable formats
 ```
 
 Use the comments to communicate issues to resolve for the volunteer who made
