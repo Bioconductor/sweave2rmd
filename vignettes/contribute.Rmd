@@ -171,10 +171,11 @@ replace with an `.Rmd` file.
     Note: We currently use this method to preprocess files since we can't
     directly convert from Sweave (.Rnw) to R Markdown (.Rmd). `pandoc` has some
     issues processing chunks of code, so we'll have to manually correct these
-    sections of the .Rmd file you can refer the steps given in point no 14 for
-    converting the code chunks manually.
-
-14. steps for adjusting the code chunks manually:
+    sections of the .Rmd file. You can refer to [converting the code chunks
+    manually](#converting_manually) below.
+    
+    <a name="converting_manually"></a>
+14. Steps for converting the code chunks manually:
 
     * Modify code chunk syntax: In R Markdown, code chunks are denoted
     by three backticks followed by the curly braces with the language name
@@ -218,13 +219,13 @@ replace with an `.Rmd` file.
         ````
 
     * Knit the R Markdown vignette: Once you have converted the content
-    and added Markdown formatting, you can knit the R Markdown vignette
+    and added R Markdown formatting, you can knit the R Markdown vignette
     to generate the output document. RStudio provides a "Knit" button for
     this purpose.
 
     * Review and refine: Review the generated output document, make any 
     necessary refinements, and repeat the process until you are satisfied
-    with the converted R Markdown vignette
+    with the converted R Markdown vignette.
 
 15. If the file doesn't have [yaml](https://yaml.org/) at the top, add it using
     the following as an example:
