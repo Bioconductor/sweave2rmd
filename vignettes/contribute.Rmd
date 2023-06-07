@@ -171,9 +171,63 @@ replace with an `.Rmd` file.
     Note: We currently use this method to preprocess files since we can't
     directly convert from Sweave (.Rnw) to R Markdown (.Rmd). `pandoc` has some
     issues processing chunks of code, so we'll have to manually correct these
-    sections of the .Rmd file.
+    sections of the .Rmd file. You can refer to [converting the code chunks
+    manually](#converting_manually) below.
+    
+    <a name="converting_manually"></a>
+14. Steps for converting the code chunks manually:
 
-14. If the file doesn't have [yaml](https://yaml.org/) at the top, add it using
+    * Modify code chunk syntax: In R Markdown, code chunks are denoted
+    by three backticks followed by the curly braces with the language name
+    (e.g., `{r}`). Replace the Sweave code chunk syntax (<<>>=) with the 
+    R Markdown code chunk syntax.
+
+    * Adjust code chunk options: Adjust any code chunk options if necessary.
+    In R Markdown, code chunk options are specified within the curly braces 
+    following the language name. For example, if you have a Sweave code 
+    chunk like <<chunkname, echo=FALSE>>=, you would change it to 
+    {r chunkname, echo=FALSE} in R Markdown.
+  
+        For more clarity you can see the example of code chunk below
+  
+        ````markdown
+        # sweave code chunk example in .Rnw file the code block end with @ sign
+        
+        <<stream, eval=FALSE>>=
+        strm <- FastqStreamer("a.fastq.gz")
+        repeat {
+            fq <- yield(strm)
+            if (length(fq) == 0)
+                break
+            ## process chunk
+        }
+        @
+        ````
+    
+        ````markdown
+        # Converted R Markdown code chunk in .Rmd file
+    
+        `r ''````{r stream, eval=FALSE}
+        strm <- FastqStreamer("a.fastq.gz")
+        repeat {
+            fq <- yield(strm)
+            if (length(fq) == 0)
+                break
+            ## process chunk
+        }
+        ```
+        ````
+
+    * Knit the R Markdown vignette: Once you have converted the content
+    and added R Markdown formatting, you can knit the R Markdown vignette
+    to generate the output document. RStudio provides a "Knit" button for
+    this purpose.
+
+    * Review and refine: Review the generated output document, make any 
+    necessary refinements, and repeat the process until you are satisfied
+    with the converted R Markdown vignette.
+
+15. If the file doesn't have [yaml](https://yaml.org/) at the top, add it using
     the following as an example:
 
     ```
@@ -210,7 +264,7 @@ replace with an `.Rmd` file.
     r format(Sys.Date(), "%B %d, %Y")
     ```
 
-15. If agreed with the maintainer, add yourself as a contributor:
+16. If agreed with the maintainer, add yourself as a contributor:
 
     ```
     ---
@@ -235,7 +289,6 @@ replace with an `.Rmd` file.
     you knit the .Rmd, it will display your name and only the value of
     `affiliation`.
 
-16. Convert any lines manually as necessary.
 17. If using RStudio, `Knit` your new vignette and compare with the Sweave
     version periodically to ensure that the HTML produced from your R Markdown
     file is representative of the PDF you found in step 4.
