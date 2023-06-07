@@ -86,8 +86,8 @@ Bioconductor repository.
     build machines will recognize that a new version is available.
 
     We also noticed that your package does not have a GitHub repository.We
-    want you to ask if you consider managing your sources in GitHub.That would
-    simplify matters.?
+    want you to ask if you would like to consider managing your sources in
+    GitHub?
 
     Some benefits of a GitHub repository includes:
 
