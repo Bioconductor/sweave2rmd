@@ -149,26 +149,8 @@ converted vignette.</li>
 </ol>
 </div>
 <div class="section level3">
-<h3 id="build-status">Build Status<a class="anchor" aria-label="anchor" href="#build-status"></a>
-</h3>
-<p>Note that it’s best to work on vignettes from packages passing the <a href="https://bioconductor.org/checkResults" class="external-link">Bioconductor build report
-on devel</a>. Specifically, the build status should be ‘OK’ or
-‘WARNING’. Attempting to convert vignettes belonging to packages that
-are not passing may make it difficult to run the vignette and verify
-that it as well as the package are working correctly.</p>
-</div>
-<div class="section level3">
 <h3 id="confirm-willingness-of-maintainer-to-accept-pull-request">Confirm Willingness of Maintainer to Accept Pull Request<a class="anchor" aria-label="anchor" href="#confirm-willingness-of-maintainer-to-accept-pull-request"></a>
 </h3>
-<p>If a package is not maintained by Bioconductor, the maintainer must
-be contacted to confirm if they will accept a pull request.</p>
-<p>If the package’s URL on the landing page is to the package’s GitHub
-mirror, you can make initial contact by creating an issue. It’s
-sometimes worth trying to search GitHub for a mirror even if none is
-listed.</p>
-<p>If no mirror exists, you should contact the maintainer by email;
-however, you may need to also recommend that they create a mirror of
-their package’s Bioconductor repository.</p>
 <div class="section level4">
 <h4 id="contact-the-maintainer-via-a-github-issue">Contact the Maintainer via a GitHub Issue<a class="anchor" aria-label="anchor" href="#contact-the-maintainer-via-a-github-issue"></a>
 </h4>
@@ -184,28 +166,15 @@ converted vignette. You can modify the following example to post on the
 issue.</p>
 <pre><code>Hi,
 
-I'm a [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd) volunteer
-and we're trying to replace Bioconductor Sweave vignettes with R Markdown.
-R Markdown vignettes convert to HTML, use BiocStyle, and are easier to
-maintain.
-
-Would you consider accepting a pull request for the R Markdown version of
-__vignette_name__ from one of our volunteers?
-
-We'll ask you to review and accept the pull request. You'll also need to
-bump the version number in your DESCRIPTION file so that the Bioconductor
-build machines will recognize that a new version is available.
+I'm volunteering with [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd)
+and we're trying to replace all Bioconductor Sweave vignettes R Markdown
+vignettes. Would you be willing to accept a pull request with the R Markdown
+version of __vignette_name__ from one of our volunteers? We'll ask you to
+review and accept the pull request. You'll also need to bump the version
+number in your DESCRIPTION file so that the build machines will recognize
+that a new version is available.
 
 Thanks for your time.</code></pre>
-<p>Note: If the package has multiple vignettes, you can modify the
-communication as follows</p>
-<pre><code>Would you consider accepting pull requests for R Markdown versions of the
-following vignettes:
-
-* packageName/vignettes/packageName.Rnw
-* packageName/vignettes/packageName2.Rnw</code></pre>
-<p>Sometimes maintainers deprecate vignettes so they may only want some
-files converted.</p>
 </li>
 </ol>
 </div>
@@ -223,40 +192,27 @@ with the converted vignette. You can modify the following example email
 to send to the maintainer:</p>
 <pre><code>Hi,
 
-I'm a [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd) volunteer
-and we're trying to replace Bioconductor Sweave vignettes with R Markdown.
-R Markdown vignettes convert to HTML, use BiocStyle, and are easier to
-maintain.
-
-Would you consider accepting a pull request for the R Markdown version of
-__vignette_name__ for __package__ from one of our volunteers?
-
-We'll ask you to review and accept the pull request. You'll also need to
-bump the version number in your DESCRIPTION file so that the Bioconductor
-build machines will recognize that a new version is available.
+I'm volunteering with [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd)
+and we're trying to replace all Bioconductor Sweave vignettes with R Markdown
+vignettes. Would you be willing to accept a pull request converting
+__vignette_name__ for __package_name__ from one of our volunteers? We'll ask
+you to review and accept the pull request. You'll also need to bump the
+version number in your DESCRIPTION file so that the build machines will
+recognize that a new version is available.
 
 Thanks for your time.</code></pre>
-<p>As above, you can alter the content if there are multiple
-vignettes.</p>
 </li>
 </ol>
-</div>
-</div>
-<div class="section level3">
-<h3 id="updating-the-project-board">Updating the Project Board<a class="anchor" aria-label="anchor" href="#updating-the-project-board"></a>
-</h3>
-<p>Verify the vignette isn’t already on the board. If the vignette must
-be added, include the path to the vignette as the title and set the
-Status.</p>
 <p>After you contact the maintainer, set the <code>Status</code> to
 <code>Contacted</code> and <code>Last Modified</code> to today.</p>
 <p>Once you hear back from the maintainer, if they will accept the pull
-request, set the <code>Status</code> to <code>Todo</code> for each
-vignette. Similarly, if they will not accept a pull request, set it to
-<code>Maintainer Not Interested</code>. If after two weeks, the
-maintainer is not responsive, set the <code>Status</code> to
+request, set the <code>Status</code> to
+<code>Maintainer Interested</code>. If they will not accept a pull
+request, set it to <code>Maintainer Not Interested</code>. If after two
+weeks, the maintainer is not responsive, set the <code>Status</code> to
 <code>Unresponsive</code> and update <code>Last Modified</code> to
 today’s date.</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="create-the-r-markdown--rmd-vignette-and-remove-the-sweave-vignette--rnw">Create the R Markdown (.Rmd) vignette and Remove the Sweave vignette
@@ -346,28 +302,28 @@ curly braces following the language name. For example, if you have a
 Sweave code chunk like &lt;&lt;chunkname, echo=FALSE&gt;&gt;=, you would
 change it to {r chunkname, echo=FALSE} in R Markdown.</p>
 <p>For more clarity you can see the example of code chunk below</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># sweave code chunk example in .Rnw file the code block end with @ sign</span></span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># sweave code chunk example in .Rnw file the code block end with @ sign</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>&lt;&lt;stream, eval=FALSE&gt;&gt;=</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>strm &lt;- FastqStreamer("a.fastq.gz")</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>repeat {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    fq &lt;- yield(strm)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    if (length(fq) == 0)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        break</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ## process chunk</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>@</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Converted R Markdown code chunk in .Rmd file</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>&lt;&lt;stream, eval=FALSE&gt;&gt;=</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>strm &lt;- FastqStreamer("a.fastq.gz")</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>repeat {</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    fq &lt;- yield(strm)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    if (length(fq) == 0)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        break</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    ## process chunk</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>@</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Converted R Markdown code chunk in .Rmd file</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stream, eval=FALSE}</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="in">strm &lt;- FastqStreamer("a.fastq.gz")</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="in">repeat {</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="in">    fq &lt;- yield(strm)</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="in">    if (length(fq) == 0)</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="in">        break</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="in">    ## process chunk</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stream, eval=FALSE}</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="in">strm &lt;- FastqStreamer("a.fastq.gz")</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="in">repeat {</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="in">    fq &lt;- yield(strm)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">    if (length(fq) == 0)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">        break</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="in">    ## process chunk</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </li>
 <li><p>Knit the R Markdown vignette: Once you have converted the content
 and added R Markdown formatting, you can knit the R Markdown vignette to
@@ -551,21 +507,21 @@ information.</p></li>
 blank lines before the start or after the end of the code within the
 code block.</p>
 <p>For example, you can see the formatting of code blocks below:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Examples of Code Blocks Formatting</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>You can see here in this example that we have a single blank line before and after</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>every code chunk, section, or paragraph. Also, you will notice that there are no</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>blank lines before the start or after the end of the code within the code block.</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r quick_start-load, results="hide", message=FALSE}</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="in">library(GenomicFiles)</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>Ranges can be a <span class="in">`GRanges`</span>, <span class="in">`GRangesList`</span> or <span class="in">`GenomicFiles`</span> class.</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{r quick_start-ranges}</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="in">gr &lt;- GRanges("chr14", IRanges(c(19411500 + (1:5)*20), width=10))</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Examples of Code Blocks Formatting</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>You can see here in this example that we have a single blank line before and after</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>every code chunk, section, or paragraph. Also, you will notice that there are no</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>blank lines before the start or after the end of the code within the code block.</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r quick_start-load, results="hide", message=FALSE}</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="in">library(GenomicFiles)</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>Ranges can be a <span class="in">`GRanges`</span>, <span class="in">`GRangesList`</span> or <span class="in">`GenomicFiles`</span> class.</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{r quick_start-ranges}</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="in">gr &lt;- GRanges("chr14", IRanges(c(19411500 + (1:5)*20), width=10))</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </li>
 <li><p>Long lines have been broken up and reformatted, you can achieve
 this by selecting the text in your script and then clicking on
