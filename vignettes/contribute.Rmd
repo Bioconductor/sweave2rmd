@@ -85,7 +85,7 @@ Bioconductor repository.
     bump the version number in your DESCRIPTION file so that the Bioconductor
     build machines will recognize that a new version is available.
 
-    We also noticed that your package does not have a GitHub repository.We
+    We also noticed that your package does not have a GitHub repository. We
     want you to ask if you would like to consider managing your sources in
     GitHub?
 
