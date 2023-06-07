@@ -49,7 +49,26 @@ There are many ways to contribute to our project.
    maintainer to verify they will accept a pull request with the converted
    vignette.
 
+### Build Status
+
+Note that it's best to work on vignettes from packages passing the [Bioconductor
+build report on devel](https://bioconductor.org/checkResults). Specifically,
+the build status should be 'OK' or 'WARNING'. Attempting to convert vignettes
+belonging to packages that are not passing may make it difficult to run the
+vignette and verify that it as well as the package are working correctly.
+
 ### Confirm Willingness of Maintainer to Accept Pull Request
+
+If a package is not maintained by Bioconductor, the maintainer must be contacted
+to confirm if they will accept a pull request.
+
+If the package's URL on the landing page is to the package's GitHub mirror, you
+can make initial contact by creating an issue. It's sometimes worth trying to
+search GitHub for a mirror even if none is listed.
+
+If no mirror exists, you should contact the maintainer by email; however, you
+may need to also recommend that they create a mirror of their package's
+Bioconductor repository.
 
 #### Contact the Maintainer via a GitHub Issue
 
@@ -62,16 +81,34 @@ There are many ways to contribute to our project.
    ```
    Hi,
 
-   I'm volunteering with [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd)
-   and we're trying to replace all Bioconductor Sweave vignettes R Markdown
-   vignettes. Would you be willing to accept a pull request with the R Markdown
-   version of __vignette_name__ from one of our volunteers? We'll ask you to
-   review and accept the pull request. You'll also need to bump the version
-   number in your DESCRIPTION file so that the build machines will recognize
-   that a new version is available.
+   I'm a [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd) volunteer
+   and we're trying to replace Bioconductor Sweave vignettes with R Markdown.
+   R Markdown vignettes convert to HTML, use BiocStyle, and are easier to
+   maintain.
+
+   Would you consider accepting a pull request for the R Markdown version of
+   __vignette_name__ from one of our volunteers?
+
+   We'll ask you to review and accept the pull request. You'll also need to
+   bump the version number in your DESCRIPTION file so that the Bioconductor
+   build machines will recognize that a new version is available.
 
    Thanks for your time.
    ```
+
+   Note: If the package has multiple vignettes, you can modify the communication
+   as follows
+
+    ```
+    Would you consider accepting pull requests for R Markdown versions of the
+    following vignettes:
+
+    * packageName/vignettes/packageName.Rnw
+    * packageName/vignettes/packageName2.Rnw
+    ```
+
+    Sometimes maintainers deprecate vignettes so they may only want some files
+    converted.
 
 #### Contact the Maintainer via Email
 
@@ -85,23 +122,35 @@ There are many ways to contribute to our project.
    ```
    Hi,
 
-   I'm volunteering with [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd)
-   and we're trying to replace all Bioconductor Sweave vignettes with R Markdown
-   vignettes. Would you be willing to accept a pull request converting
-   __vignette_name__ for __package_name__ from one of our volunteers? We'll ask
-   you to review and accept the pull request. You'll also need to bump the
-   version number in your DESCRIPTION file so that the build machines will
-   recognize that a new version is available.
+   I'm a [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd) volunteer
+   and we're trying to replace Bioconductor Sweave vignettes with R Markdown.
+   R Markdown vignettes convert to HTML, use BiocStyle, and are easier to
+   maintain.
+
+   Would you consider accepting a pull request for the R Markdown version of
+   __vignette_name__ for __package__ from one of our volunteers?
+
+   We'll ask you to review and accept the pull request. You'll also need to
+   bump the version number in your DESCRIPTION file so that the Bioconductor
+   build machines will recognize that a new version is available.
 
    Thanks for your time.
    ```
+
+   As above, you can alter the content if there are multiple vignettes.
+
+### Updating the Project Board
+
+Verify the vignette isn't already on the board. If the vignette must
+be added, include the path to the vignette as the title and set the
+Status.
 
 After you contact the maintainer, set the `Status` to `Contacted` and
 `Last Modified` to today.
 
 Once you hear back from the maintainer, if they will accept the pull request,
-set the `Status` to `Maintainer Interested`. If they will not accept a pull
-request, set it to `Maintainer Not Interested`. If after two weeks, the
+set the `Status` to `Todo` for each vignette. Similarly, if they will not accept
+a pull request, set it to `Maintainer Not Interested`. If after two weeks, the
 maintainer is not responsive, set the `Status` to `Unresponsive` and update
 `Last Modified` to today's date.
 
@@ -171,9 +220,63 @@ replace with an `.Rmd` file.
     Note: We currently use this method to preprocess files since we can't
     directly convert from Sweave (.Rnw) to R Markdown (.Rmd). `pandoc` has some
     issues processing chunks of code, so we'll have to manually correct these
-    sections of the .Rmd file.
+    sections of the .Rmd file. You can refer to [converting the code chunks
+    manually](#converting_manually) below.
+    
+    <a name="converting_manually"></a>
+14. Steps for converting the code chunks manually:
 
-14. If the file doesn't have [yaml](https://yaml.org/) at the top, add it using
+    * Modify code chunk syntax: In R Markdown, code chunks are denoted
+    by three backticks followed by the curly braces with the language name
+    (e.g., `{r}`). Replace the Sweave code chunk syntax (<<>>=) with the 
+    R Markdown code chunk syntax.
+
+    * Adjust code chunk options: Adjust any code chunk options if necessary.
+    In R Markdown, code chunk options are specified within the curly braces 
+    following the language name. For example, if you have a Sweave code 
+    chunk like <<chunkname, echo=FALSE>>=, you would change it to 
+    {r chunkname, echo=FALSE} in R Markdown.
+  
+        For more clarity you can see the example of code chunk below
+  
+        ````markdown
+        # sweave code chunk example in .Rnw file the code block end with @ sign
+        
+        <<stream, eval=FALSE>>=
+        strm <- FastqStreamer("a.fastq.gz")
+        repeat {
+            fq <- yield(strm)
+            if (length(fq) == 0)
+                break
+            ## process chunk
+        }
+        @
+        ````
+    
+        ````markdown
+        # Converted R Markdown code chunk in .Rmd file
+    
+        `r ''````{r stream, eval=FALSE}
+        strm <- FastqStreamer("a.fastq.gz")
+        repeat {
+            fq <- yield(strm)
+            if (length(fq) == 0)
+                break
+            ## process chunk
+        }
+        ```
+        ````
+
+    * Knit the R Markdown vignette: Once you have converted the content
+    and added R Markdown formatting, you can knit the R Markdown vignette
+    to generate the output document. RStudio provides a "Knit" button for
+    this purpose.
+
+    * Review and refine: Review the generated output document, make any 
+    necessary refinements, and repeat the process until you are satisfied
+    with the converted R Markdown vignette.
+
+15. If the file doesn't have [yaml](https://yaml.org/) at the top, add it using
     the following as an example:
 
     ```
@@ -210,7 +313,7 @@ replace with an `.Rmd` file.
     r format(Sys.Date(), "%B %d, %Y")
     ```
 
-15. If agreed with the maintainer, add yourself as a contributor:
+16. If agreed with the maintainer, add yourself as a contributor:
 
     ```
     ---
@@ -235,7 +338,6 @@ replace with an `.Rmd` file.
     you knit the .Rmd, it will display your name and only the value of
     `affiliation`.
 
-16. Convert any lines manually as necessary.
 17. If using RStudio, `Knit` your new vignette and compare with the Sweave
     version periodically to ensure that the HTML produced from your R Markdown
     file is representative of the PDF you found in step 4.
