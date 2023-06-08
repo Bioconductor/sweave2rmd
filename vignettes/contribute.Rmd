@@ -71,12 +71,12 @@ may need to also recommend that they create a mirror of their package's
 Bioconductor repository.
 
     ```
-    Hi Bioconductor Package Maintainers,
+    Hi Maintainers_Name,
 
-    I'm a [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd) volunteer
-    and we're trying to replace Bioconductor Sweave vignettes with R Markdown.
-    R Markdown vignettes convert to HTML, use BiocStyle, and are easier to
-    maintain.
+    I'm a [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd) volunteer and
+    we're trying to replace Bioconductor Sweave vignettes with R Markdown. R
+    Markdown vignettes convert to HTML, use BiocStyle, and are easier
+    to maintain.
 
     Would you consider accepting a pull request for the R Markdown version of
     __vignette_name__ for __package__ from one of our volunteers?
@@ -85,32 +85,20 @@ Bioconductor repository.
     bump the version number in your DESCRIPTION file so that the Bioconductor
     build machines will recognize that a new version is available.
 
-    We also noticed that your package does not have a GitHub repository. We
-    want you to ask if you would like to consider managing your sources in
-    GitHub?
-
+    We send pull requests through GitHub; however, we noticed that your package
+    does not have a GitHub repository. We hope you'll [consider creating
+    repository for your package in
+    GitHub](https://contributions.bioconductor.org/git-version-control.html#maintain-github-bioc).
+ 
     Some benefits of a GitHub repository includes:
-
-    1. Version Control: GitHub offers reliable version control for tracking changes and managing branches.
-
-    2. Collaboration: GitHub provides a platform for collaboration, including issue tracking and pull requests.
-
-    3. Community Engagement: GitHub fosters community involvement, allowing discussions and contributions.
-
-    4. Streamlined Updates: With a GitHub repository, distributing updates to users becomes effortless.
-
-    To create a GitHub repository, refer to these resources:
-
-    1. GitHub Guides: [Creating a Repository](https://guides.github.com/activities/hello-world/)
-
-    2. GitHub Documentation: [GitHub Flow](https://docs.github.com/en/github/collaborating-with-pull-requests/github-flow)
-
-    If you need assistance, our Sweave2Rmd team is available to help.
-  
+ 
+    * Collaboration: GitHub provides a platform for collaboration, including issue tracking and pull requests.
+    * Community Engagement: GitHub fosters community involvement, allowing discussions and contributions.
+ 
     Thank you for your time. I look forward to your response.
 
     Best regards,
-  
+ 
     [Your Name]
     Volunteer, Sweave2Rmd Project
     ```
