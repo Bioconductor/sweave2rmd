@@ -70,6 +70,39 @@ If no mirror exists, you should contact the maintainer by email; however, you
 may need to also recommend that they create a mirror of their package's
 Bioconductor repository.
 
+    ```
+    Hi Maintainers_Name,
+
+    I'm a [Sweave2Rmd](https://github.com/Bioconductor/sweave2rmd) volunteer and
+    we're trying to replace Bioconductor Sweave vignettes with R Markdown. R
+    Markdown vignettes convert to HTML, use BiocStyle, and are easier
+    to maintain.
+
+    Would you consider accepting a pull request for the R Markdown version of
+    __vignette_name__ for __package__ from one of our volunteers?
+
+    We'll ask you to review and accept the pull request. You'll also need to
+    bump the version number in your DESCRIPTION file so that the Bioconductor
+    build machines will recognize that a new version is available.
+
+    We send pull requests through GitHub; however, we noticed that your package
+    does not have a GitHub repository. We hope you'll [consider creating
+    repository for your package in
+    GitHub](https://contributions.bioconductor.org/git-version-control.html#maintain-github-bioc).
+ 
+    Some benefits of a GitHub repository includes:
+ 
+    * Collaboration: GitHub provides a platform for collaboration, including issue tracking and pull requests.
+    * Community Engagement: GitHub fosters community involvement, allowing discussions and contributions.
+ 
+    Thank you for your time. I look forward to your response.
+
+    Best regards,
+ 
+    [Your Name]
+    Volunteer, Sweave2Rmd Project
+    ```
+   
 #### Contact the Maintainer via a GitHub Issue
 
 1. Search for the package on
