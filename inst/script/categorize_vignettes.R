@@ -35,13 +35,6 @@ packageNames <- unique(vignettes$V1)
 # Get packages in specified Bioconductor version
 biocPckgs <- biocPkgList(version, repo, addBiocViewParents = TRUE)
 
-# Create list of packages from vignette list in specified version
-pckgs<- c()
-for (i in packageNames) {
-  if (i %in% biocPckgs$Package)
-    pckgs <- append(pckgs, i)
-}
-
 # Getting list of packages maintained by Bioconductor
 coreMaintained <- biocMaintained()$Package
 
@@ -62,7 +55,7 @@ for (i in 1:length(packageNames)) {
                           rank = " ",
                           priority = " ",
                           status = "Deprecated",
-                          maintainer_email = "N/A")
+                          maintainer_email = " ")
   }
 }
 
