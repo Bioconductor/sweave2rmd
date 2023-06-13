@@ -15,57 +15,47 @@
 # are not in the current version so that we can classify their status as
 # deprecated.
 
-
 # Calling libraries to be used
 library(BiocPkgTools)
 library(openxlsx)
 
 # Declaring variables
 threshold <- 40
-version <- "3.17"
+version <- "3.18"
 repo <- "BioCsoft"
 output_file <- "sweave2rmd.xlsx"
-filepath <- "https://trello.com/1/cards/61d9de5dffd84647db58edb7/attachments/61d9de7a6b634f8b08261871/download/rnw-files.txt"
+filepath <- "https://github.com/Bioconductor/sweave2rmd/files/11604501/20230530.txt"
 
-# Import data and divide the url to extract package names in one column
+# Import data and divide the URL to extract package names in one column
 vignettes <- read.delim(filepath, header = FALSE, sep = "/", dec = " ")
 
 # Extract unique packages so that a package name appears only once
 packageNames <- unique(vignettes$V1)
 
 # Get packages in specified Bioconductor version
-biocPckgs <- biocPkgList(
-  version,
-  repo,
-  addBiocViewParents = TRUE
-)
-
-# Create list of packages from vignette list in specified version
-pckgs<- c()
-for (i in packageNames) {
-  if (i %in% biocPckgs$Package)
-    pckgs <- append(pckgs, i)
-}
+biocPckgs <- biocPkgList(version, repo, addBiocViewParents = TRUE)
 
 # Getting list of packages maintained by Bioconductor
 coreMaintained <- biocMaintained()$Package
 
-# For every package, their rank, priority and status is computed. This is the
-# output that we want from the script which will help us categorize the
-# packages.
+# For every package, their rank, priority, status, and maintainer's email are computed.
+# This is the output that we want from the script which will help us categorize the packages.
 pkgsList <- list()
 for (i in 1:length(packageNames)) {
-  if (packageNames[[i]] %in% pckgs) {
+  if (packageNames[[i]] %in% biocPckgs$Package) {
     rank <- pkgDownloadRank(packageNames[[i]], "software", version)
+    maintainer_email <- biocPckgs[biocPckgs$Package == packageNames[[i]], ]$Maintainer
     pkgsList[[i]] <- list(package = packageNames[[i]],
                           rank = rank[[1]],
                           priority = ifelse(rank[[1]] < threshold, "High", "Low"),
-                          status = ifelse(packageNames[[i]] %in% coreMaintained, "To do", "Contact maintainer"))
+                          status = ifelse(packageNames[[i]] %in% coreMaintained, "To do", "Contact maintainer"),
+                          maintainer_email = maintainer_email)
   } else {
     pkgsList[[i]] <- list(package = packageNames[[i]],
                           rank = " ",
                           priority = " ",
-                          status = "Deprecated")
+                          status = "Deprecated",
+                          maintainer_email = " ")
   }
 }
 
