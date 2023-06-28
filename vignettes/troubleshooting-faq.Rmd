@@ -63,4 +63,17 @@ DESCRIPTION file. You can solve these issues by adding the missing lines in the
 correct format in their respective files. If you are unsure about the code or
 document, always ask the maintainer or reviewers for guidance.
  
- 
+### *Question:* How can one handle the `end of document` error when using tools like pandoc or RnwtoRmd?
+*Background information:* At times, during the conversion process of a Sweave vignette
+to an R Markdown vignette, an error known as the `end of document` error may occur.
+his error prevents the successful execution of the code, leading to the failure in
+generating the .Rmd file.
+
+*Answer:* The `end of document` error typically arises when certain code chunks contain
+special characters. To identify the problematic code chunk, it is advisable to remove
+the code chunks one by one from the `.Rnw` file and attempt to run the code. This
+approach allows you to pinpoint the specific code chunk causing the issue. Once the
+problematic code chunk has been identified, it should be removed. After successfully
+generating the `.Rmd` file, the problematic code chunk can then be included in the `.Rmd`
+file using **Rmarkdown format**. If you are unsure about the code or document, always ask
+the maintainer or reviewers for guidance.
