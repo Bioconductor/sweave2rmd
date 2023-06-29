@@ -155,6 +155,31 @@ correct format in their respective files. If you are unsure about the
 code or document, always ask the maintainer or reviewers for
 guidance.</p>
 </div>
+<div class="section level3">
+<h3 id="question-how-can-one-handle-the-unexpected-end-of-document-error-when-using-tools-like-pandoc-or-rnw2rmd">
+<em>Question:</em> How can one handle the
+<code>Unexpected end of document</code> error when using tools like
+pandoc or Rnw2Rmd?<a class="anchor" aria-label="anchor" href="#question-how-can-one-handle-the-unexpected-end-of-document-error-when-using-tools-like-pandoc-or-rnw2rmd"></a>
+</h3>
+<p><em>Background information:</em> During the conversion process while
+running <code>pandoc</code> or <code>Rnw2Rmd</code>,<br>
+an “unexpected end of document” error prevents the .Rmd file from being
+created. For example, the error message states:</p>
+<pre><code>Error at "C:/Users/path.Rnw" (line 554,column 2):
+unexpected end of document
+^</code></pre>
+<p><em>Answer:</em> The <code>unexpected end of document</code> error
+typically arises when certain code chunks contain special characters. To
+identify the problematic code chunk, it is advisable to remove the code
+chunks one by one from the <code>.Rnw</code> file and attempt to run the
+code. This approach allows you to pinpoint the specific code chunk
+causing the issue. Once the problematic code chunk has been identified,
+it should be removed. After successfully generating the
+<code>.Rmd</code> file, the problematic code chunk can then be included
+in the <code>.Rmd</code> file using <strong>Rmarkdown format</strong>.
+If you are unsure about the code or document, always ask the maintainer
+or reviewers for guidance.</p>
+</div>
 </div>
   </div>
 
