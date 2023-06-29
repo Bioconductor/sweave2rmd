@@ -63,4 +63,22 @@ DESCRIPTION file. You can solve these issues by adding the missing lines in the
 correct format in their respective files. If you are unsure about the code or
 document, always ask the maintainer or reviewers for guidance.
  
- 
+### *Question:* How can one handle the `Unexpected end of document` error when using tools like pandoc or Rnw2Rmd?
+*Background information:* During the conversion process while running `pandoc` or `Rnw2Rmd`,  
+an "unexpected end of document" error prevents the .Rmd file from being created. For example,
+the error message states:
+```
+Error at "C:/Users/path.Rnw" (line 554,column 2):
+unexpected end of document
+^
+```
+
+*Answer:* The `unexpected end of document` error typically arises when certain code chunks contain
+special characters. To identify the problematic code chunk, it is advisable to
+remove the code chunks one by one from the `.Rnw` file and attempt to run the
+code. This approach allows you to pinpoint the specific code chunk causing the
+issue. Once the problematic code chunk has been identified, it should be
+removed. After successfully generating the `.Rmd` file, the problematic code
+chunk can then be included in the `.Rmd` file using **Rmarkdown format**. If you
+are unsure about the code or document, always ask the maintainer or reviewers
+for guidance.
