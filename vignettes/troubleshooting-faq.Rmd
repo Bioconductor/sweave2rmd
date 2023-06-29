@@ -64,16 +64,14 @@ correct format in their respective files. If you are unsure about the code or
 document, always ask the maintainer or reviewers for guidance.
  
 ### *Question:* How can one handle the `Unexpected end of document` error when using tools like pandoc or Rnw2Rmd?
-*Background information:* During the conversion process of a Sweave vignette
-to an R Markdown vignette, there are instances where an error message appears.
-The error message states:
+*Background information:* During the conversion process while running `pandoc` or `Rnw2Rmd`,  
+an "unexpected end of document" error prevents the .Rmd file from being created. For example,
+the error message states:
 ```
 Error at "C:/Users/path.Rnw" (line 554,column 2):
 unexpected end of document
 ^
 ```
-this error prevents the successful execution of the code, leading to the failure
-in generating the .Rmd file.
 
 *Answer:* The `unexpected end of document` error typically arises when certain code chunks contain
 special characters. To identify the problematic code chunk, it is advisable to
