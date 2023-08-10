@@ -38,7 +38,7 @@ There are many ways to contribute to our project.
 
 * [git](https://github.com)
 * [RStudio](https://www.rstudio.com/products/rstudio/)
-* Rnw2Rmd
+* [Rnw2Rmd](https://github.com/Bioconductor/Rnw2Rmd)
 
 ### Claim a Vignette to Convert
 
