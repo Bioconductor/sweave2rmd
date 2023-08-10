@@ -265,8 +265,8 @@ replace with an `.Rmd` file.
 
     ```
     if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-    BiocManager::install(Rnw2Rmd)
+        install.packages("BiocManager")
+    BiocManager::install("Bioconductor/Rnw2Rmd")
     ```
     Once the package is successfully installed, you can use it to perform
     the conversion by executing this command in the R console:
@@ -277,11 +277,9 @@ replace with an `.Rmd` file.
     Make sure to replace Filepath with the actual paths to your `.Rnw` and `.Rmd`
     files respectively.
 
-    Note: We currently use this method to preprocess files since we can't
-    directly convert from Sweave (.Rnw) to R Markdown (.Rmd). `Rnw2Rmd` has some
-    issues processing, so we'll have to manually correct these
-    sections of the .Rmd file. You can refer to [converting the code chunks
-    manually](#converting_manually) below.
+    Note: Occasionally `Rnw2Rmd` has some` issues processing, so we'll have to
+    manually correct these sections of the .Rmd file. You can refer to
+    [converting the code chunks manually](#converting_manually) below.
     
     <a name="converting_manually"></a>
 14. Steps for converting the code chunks manually:
