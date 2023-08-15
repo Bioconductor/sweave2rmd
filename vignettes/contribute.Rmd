@@ -28,6 +28,7 @@ There are many ways to contribute to our project.
   - [R](https://www.rstudio.com/resources/books/)
   - R Markdown,[Rmarkdown book](https://bookdown.org/yihui/rmarkdown/) or
     [Rstudio Rmarkdown cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
+  - [pandoc](https://pandoc.org)
 
 * Familiarity with
   - [Bioconductor](https://bioconductor.org)
@@ -37,7 +38,7 @@ There are many ways to contribute to our project.
 
 * [git](https://github.com)
 * [RStudio](https://www.rstudio.com/products/rstudio/)
-* [pandoc](https://pandoc.org)
+* [Rnw2Rmd](https://github.com/Bioconductor/Rnw2Rmd)
 
 ### Claim a Vignette to Convert
 
@@ -224,6 +225,12 @@ replace with an `.Rmd` file.
         person("Bioconductor Package Maintainer",
             email = "maintainer@bioconductor.org", role = "cre"))
     ```
+    Note: After performing the conversion, if you have contributed to multiple
+    conversions, you can shorten the contributor comment in the DESCRIPTION file to:
+
+    ```
+    comment = "Converted vignettes from Sweave to RMarkdown / HTML."
+    ```
 
     The following roles indicate the following
     * "cre" - maintainer
@@ -243,18 +250,36 @@ replace with an `.Rmd` file.
     # Create commit with the following message
     git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'
     ```
-13. If you have `pandoc`, use it to preprocess. In the terminal 
+13. If you have `pandoc` and `Rnw2Rmd` installed, you can utilize them for
+    preprocessing your documents. Follow the steps below:
+
+    Check if the `Rnw2Rmd` package is already installed by running the
+    following command in the R console:
+    
+    ```
+    library(Rnw2Rmd)
+    ```
+
+    If the console indicates that the Rnw2Rmd package is missing,
+    install it using the following commands:
 
     ```
-    pandoc -f latex -t markdown file.Rnw -o file.Rmd
-    # Replace file.Rnw and file.Rmd with the name of the vignette you're converting
+    if (!require("BiocManager", quietly = TRUE))
+        install.packages("BiocManager")
+    BiocManager::install("Bioconductor/Rnw2Rmd")
     ```
+    Once the package is successfully installed, you can use it to perform
+    the conversion by executing this command in the R console:
 
-    Note: We currently use this method to preprocess files since we can't
-    directly convert from Sweave (.Rnw) to R Markdown (.Rmd). `pandoc` has some
-    issues processing chunks of code, so we'll have to manually correct these
-    sections of the .Rmd file. You can refer to [converting the code chunks
-    manually](#converting_manually) below.
+    ```
+    Rnw2Rmd(from = "Filepath.Rnw", to = "Filepath.Rmd", validate = FALSE)
+    ```
+    Make sure to replace Filepath with the actual paths to your `.Rnw` and `.Rmd`
+    files respectively.
+
+    Note: Occasionally `Rnw2Rmd` has some` issues processing, so we'll have to
+    manually correct these sections of the .Rmd file. You can refer to
+    [converting the code chunks manually](#converting_manually) below.
     
     <a name="converting_manually"></a>
 14. Steps for converting the code chunks manually:
