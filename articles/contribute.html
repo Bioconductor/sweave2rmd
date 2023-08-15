@@ -113,6 +113,7 @@ request workflow</a></li>
 book</a> or <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf" class="external-link">Rstudio
 Rmarkdown cheatsheet</a>
 </li>
+<li><a href="https://pandoc.org" class="external-link">pandoc</a></li>
 </ul>
 </li>
 <li>Familiarity with
@@ -129,7 +130,7 @@ Rmarkdown cheatsheet</a>
 <ul>
 <li><a href="https://github.com" class="external-link">git</a></li>
 <li><a href="https://www.rstudio.com/products/rstudio/" class="external-link">RStudio</a></li>
-<li><a href="https://pandoc.org" class="external-link">pandoc</a></li>
+<li><a href="https://github.com/Bioconductor/Rnw2Rmd" class="external-link">Rnw2Rmd</a></li>
 </ul>
 </div>
 </div>
@@ -331,6 +332,10 @@ following block.</p>
 <span>        comment <span class="op">=</span> <span class="st">"Converted YOUR_VIGNETTE_NAME vignette from Sweave to RMarkdown / HTML."</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/person.html" class="external-link">person</a></span><span class="op">(</span><span class="st">"Bioconductor Package Maintainer"</span>,</span>
 <span>        email <span class="op">=</span> <span class="st">"maintainer@bioconductor.org"</span>, role <span class="op">=</span> <span class="st">"cre"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
+<p>Note: After performing the conversion, if you have contributed to
+multiple conversions, you can shorten the contributor comment in the
+DESCRIPTION file to:</p>
+<pre><code><span><span class="va">comment</span> <span class="op">=</span> <span class="st">"Converted vignettes from Sweave to RMarkdown / HTML."</span></span></code></pre>
 <p>The following roles indicate the following</p>
 <ul>
 <li>“cre” - maintainer</li>
@@ -352,15 +357,25 @@ git add DESCRIPTION
 git commit -m 'Update DESCRIPTION with BiocStyle, knitr, VignetteBuilder'</code></pre>
 </li>
 <li>
-<p>If you have <code>pandoc</code>, use it to preprocess. In the
-terminal</p>
-<pre><code>pandoc -f latex -t markdown file.Rnw -o file.Rmd
-# Replace file.Rnw and file.Rmd with the name of the vignette you're converting</code></pre>
-<p>Note: We currently use this method to preprocess files since we can’t
-directly convert from Sweave (.Rnw) to R Markdown (.Rmd).
-<code>pandoc</code> has some issues processing chunks of code, so we’ll
-have to manually correct these sections of the .Rmd file. You can refer
-to <a href="#converting_manually">converting the code chunks
+<p>If you have <code>pandoc</code> and <code>Rnw2Rmd</code>
+installed, you can utilize them for preprocessing your documents. Follow
+the steps below:</p>
+<p>Check if the <code>Rnw2Rmd</code> package is already installed by
+running the following command in the R console:</p>
+<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">Rnw2Rmd</span><span class="op">)</span></span></code></pre>
+<p>If the console indicates that the Rnw2Rmd package is missing, install
+it using the following commands:</p>
+<pre><code><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.github.io/BiocManager/" class="external-link">"BiocManager"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"Bioconductor/Rnw2Rmd"</span><span class="op">)</span></span></code></pre>
+<p>Once the package is successfully installed, you can use it to perform
+the conversion by executing this command in the R console:</p>
+<pre><code><span><span class="fu">Rnw2Rmd</span><span class="op">(</span>from <span class="op">=</span> <span class="st">"Filepath.Rnw"</span>, to <span class="op">=</span> <span class="st">"Filepath.Rmd"</span>, validate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre>
+<p>Make sure to replace Filepath with the actual paths to your
+<code>.Rnw</code> and <code>.Rmd</code> files respectively.</p>
+<p>Note: Occasionally <code>Rnw2Rmd</code> has some` issues processing,
+so we’ll have to manually correct these sections of the .Rmd file. You
+can refer to <a href="#converting_manually">converting the code chunks
 manually</a> below.</p>
 <p><a name="converting_manually"></a></p>
 </li>
@@ -378,28 +393,28 @@ curly braces following the language name. For example, if you have a
 Sweave code chunk like &lt;&lt;chunkname, echo=FALSE&gt;&gt;=, you would
 change it to {r chunkname, echo=FALSE} in R Markdown.</p>
 <p>For more clarity you can see the example of code chunk below</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># sweave code chunk example in .Rnw file the code block end with @ sign</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>&lt;&lt;stream, eval=FALSE&gt;&gt;=</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>strm &lt;- FastqStreamer("a.fastq.gz")</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>repeat {</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    fq &lt;- yield(strm)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    if (length(fq) == 0)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        break</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    ## process chunk</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>@</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Converted R Markdown code chunk in .Rmd file</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stream, eval=FALSE}</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">strm &lt;- FastqStreamer("a.fastq.gz")</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">repeat {</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">    fq &lt;- yield(strm)</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">    if (length(fq) == 0)</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="in">        break</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="in">    ## process chunk</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># sweave code chunk example in .Rnw file the code block end with @ sign</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>&lt;&lt;stream, eval=FALSE&gt;&gt;=</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>strm &lt;- FastqStreamer("a.fastq.gz")</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>repeat {</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    fq &lt;- yield(strm)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    if (length(fq) == 0)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        break</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    ## process chunk</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>@</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Converted R Markdown code chunk in .Rmd file</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stream, eval=FALSE}</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="in">strm &lt;- FastqStreamer("a.fastq.gz")</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="in">repeat {</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="in">    fq &lt;- yield(strm)</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="in">    if (length(fq) == 0)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="in">        break</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="in">    ## process chunk</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </li>
 <li><p>Knit the R Markdown vignette: Once you have converted the content
 and added R Markdown formatting, you can knit the R Markdown vignette to
@@ -416,7 +431,7 @@ the top, add it using the following as an example:</p>
 <pre><code>---
 title: "Vignette Title"
 author: Vignette Author
-date: June 29, 2023
+date: August 15, 2023
 package: PackageName
 vignette: &gt;
   %\VignetteIndexEntry{Vignette Title}
@@ -446,7 +461,7 @@ author:
     affiliation: Vignette Author's Institution
   - name: Your Name
     affiliation: "Vignette translation from Sweave to R Markdown / HTML"
-date: June 29, 2023
+date: August 15, 2023
 package: PackageName
 vignette: &gt;
   %\VignetteIndexEntry{Vignette Title}
@@ -583,21 +598,21 @@ information.</p></li>
 blank lines before the start or after the end of the code within the
 code block.</p>
 <p>For example, you can see the formatting of code blocks below:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Examples of Code Blocks Formatting</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>You can see here in this example that we have a single blank line before and after</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>every code chunk, section, or paragraph. Also, you will notice that there are no</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>blank lines before the start or after the end of the code within the code block.</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r quick_start-load, results="hide", message=FALSE}</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="in">library(GenomicFiles)</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>Ranges can be a <span class="in">`GRanges`</span>, <span class="in">`GRangesList`</span> or <span class="in">`GenomicFiles`</span> class.</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{r quick_start-ranges}</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="in">gr &lt;- GRanges("chr14", IRanges(c(19411500 + (1:5)*20), width=10))</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Examples of Code Blocks Formatting</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>You can see here in this example that we have a single blank line before and after</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>every code chunk, section, or paragraph. Also, you will notice that there are no</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>blank lines before the start or after the end of the code within the code block.</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r quick_start-load, results="hide", message=FALSE}</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="in">library(GenomicFiles)</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>Ranges can be a <span class="in">`GRanges`</span>, <span class="in">`GRangesList`</span> or <span class="in">`GenomicFiles`</span> class.</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{r quick_start-ranges}</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="in">gr &lt;- GRanges("chr14", IRanges(c(19411500 + (1:5)*20), width=10))</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </li>
 <li><p>Long lines have been broken up and reformatted, you can achieve
 this by selecting the text in your script and then clicking on
